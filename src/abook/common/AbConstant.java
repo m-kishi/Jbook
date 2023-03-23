@@ -27,6 +27,8 @@ public class AbConstant {
 		public static final String DATE = "yyyy-MM-dd";
 		/** 年月(yyyy-MM) */
 		public static final String MONTHLY_GROUP = "yyyy-MM";
+		/** 月(MM) */
+		public static final String MONTH = "MM";
 		/** タイトル(yyyy年MM月) */
 		public static final String TITLE = "yyyy年MM月";
 		/** 備考のツールチップ */
@@ -135,6 +137,30 @@ public class AbConstant {
 						FOOD, OTFD, GOOD, FRND, TRFC, PLAY,
 						HOUS, ENGY, CNCT, MEDI, INSU, OTHR
 				)
+		);
+	}
+
+	/**
+	 * グラフ情報
+	 */
+	public static class GRAPH {
+		/** 描画領域幅 */
+		public static final int WIDTH = 345;
+		/** 描画領域高さ */
+		public static final int HEIGHT = 214;
+		/** 表示月数 */
+		public static final int DISTANCE = 13;
+		/** 支出最大値 */
+		public static final float MAX_VALUE = 15000;
+		/** 月間隔 */
+		public static final int HORIZONTAL = WIDTH / DISTANCE;
+		/** 係数 */
+		public static final float COEFFICIENT = -HEIGHT / MAX_VALUE;
+		/** 描画点サイズ */
+		public static final int RECTANGLE_SIZE = 6;
+		/** 基準線描画値 */
+		public static final List<Integer> LINE_VALUES = new ArrayList<Integer>(
+				Arrays.asList(2500, 5000, 7500, 10000, 12500)
 		);
 	}
 }

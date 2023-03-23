@@ -60,6 +60,16 @@ public class AbUtility {
 		}
 
 		/**
+		 * 日付から月形式へ変換
+		 * 
+		 * @param date 日付
+		 * @return MM
+		 */
+		public static String toMonth(LocalDate date) {
+			return date.format(DateTimeFormatter.ofPattern(FMT.MONTH));
+		}
+
+		/**
 		 * 日付からタイトル文字列へ変換
 		 * 
 		 * @param date 日付

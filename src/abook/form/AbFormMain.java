@@ -37,6 +37,9 @@ public class AbFormMain extends JFrame implements WindowListener {
 	/** 月次タブ */
 	private AbTabSummary tabSummary;
 
+	/** 推移タブ */
+	private AbTabGraphic tabGraphic;
+
 	/**
 	 * コンストラクタ
 	 * 
@@ -63,6 +66,7 @@ public class AbFormMain extends JFrame implements WindowListener {
 
 		tabExpense = new AbTabExpense(this, expenses);
 		tabSummary = new AbTabSummary(this, LocalDate.now(), summaries);
+		tabGraphic = new AbTabGraphic(this, LocalDate.now(), summaries);
 
 		// タブの切り替え設定
 		tab.addChangeListener(new ChangeListener() {
@@ -75,12 +79,16 @@ public class AbFormMain extends JFrame implements WindowListener {
 					// 月次タブ
 					case 1:
 						break;
+					// 推移タブ
+					case 2:
+						break;
 				}
 			}
 		});
 
 		tab.addTab("支出", tabExpense);
 		tab.addTab("月次", tabSummary);
+		tab.addTab("推移", tabGraphic);
 
 		addWindowListener(this);
 		getContentPane().add(tab, BorderLayout.CENTER);
@@ -96,6 +104,7 @@ public class AbFormMain extends JFrame implements WindowListener {
 		this.expenses = expenses;
 		summaries = AbSummaryManager.createSummaries(expenses);
 		tabSummary.initialize(LocalDate.now(), summaries);
+		tabGraphic.initialize(LocalDate.now(), summaries);
 	}
 
 	/**
