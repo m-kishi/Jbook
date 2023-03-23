@@ -50,6 +50,26 @@ public class AbUtility {
 		}
 
 		/**
+		 * 日付から年月形式への変換
+		 * 
+		 * @param date 日付
+		 * @return yyyy-MM
+		 */
+		public static String toMonthly(LocalDate date) {
+			return date.format(DateTimeFormatter.ofPattern(FMT.MONTHLY_GROUP));
+		}
+
+		/**
+		 * 日付からタイトル文字列へ変換
+		 * 
+		 * @param date 日付
+		 * @return yyyy年MM月
+		 */
+		public static String toTitle(LocalDate date) {
+			return date.format(DateTimeFormatter.ofPattern(FMT.TITLE));
+		}
+
+		/**
 		 * 金額を通過形式へ変換
 		 * 
 		 * @param cost   金額

@@ -25,6 +25,10 @@ public class AbConstant {
 	public static class FMT {
 		/** 日付(yyyy-MM-dd) */
 		public static final String DATE = "yyyy-MM-dd";
+		/** 年月(yyyy-MM) */
+		public static final String MONTHLY_GROUP = "yyyy-MM";
+		/** タイトル(yyyy年MM月) */
+		public static final String TITLE = "yyyy年MM月";
 		/** 備考のツールチップ */
 		public static final String NOTE = "<html>%s</html>";
 	}
@@ -54,6 +58,23 @@ public class AbConstant {
 	public static class COLOR {
 		/** 備考があるときの背景色 */
 		public static final Color NOTE_BACKGROUND = new Color(222, 252, 231);
+	}
+
+	/**
+	 * 名称
+	 */
+	public static class NAME {
+		/** 電気代 */
+		public static final String EL = "電気代";
+		/** ガス代 */
+		public static final String GS = "ガス代";
+		/** 水道代 */
+		public static final String WT = "水道代";
+
+		/** 光熱費に属する名称 */
+		public static final List<String> ENERGY = new ArrayList<String>(
+				Arrays.asList(EL, GS, WT)
+		);
 	}
 
 	/**
@@ -105,6 +126,14 @@ public class AbConstant {
 						FOOD, OTFD, GOOD, FRND, TRFC, PLAY,
 						HOUS, ENGY, CNCT, MEDI, INSU, OTHR,
 						EARN, BNUS, SPCL, PRVI, PRVO
+				)
+		);
+
+		/** 月次情報の対象種別 */
+		public static final List<String> SUMMARIES = new ArrayList<String>(
+				Arrays.asList(
+						FOOD, OTFD, GOOD, FRND, TRFC, PLAY,
+						HOUS, ENGY, CNCT, MEDI, INSU, OTHR
 				)
 		);
 	}

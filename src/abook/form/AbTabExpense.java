@@ -130,7 +130,7 @@ public class AbTabExpense extends JPanel {
 				// 初期表示
 				initialize();
 
-				// 支出情報リストの更新
+				// 支出情報リストの更新と各タブの初期化
 				frame.initialize(expenses);
 
 			} catch (AbException ex) {

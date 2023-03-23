@@ -15,6 +15,7 @@ import javax.swing.JMenuItem;
 import abook.common.AbException;
 import abook.common.AbManager.MESSAGE;
 import abook.common.AbUtility.MSG;
+import abook.form.subform.AbSubformEnergy;
 import abook.form.subform.AbSubformSearch;
 import abook.property.AbProperty;
 
@@ -45,15 +46,18 @@ public class AbFormMenu extends JMenuBar {
 		JMenuItem menuItemFile = new JMenuItem("DBファイル");
 		JMenuItem menuItemQuit = new JMenuItem("終了");
 		JMenuItem menuItemSearch = new JMenuItem("検索");
+		JMenuItem menuItemEnergy = new JMenuItem("光熱費");
 		JMenuItem menuItemVersion = new JMenuItem("バージョン情報");
 		menuItemFile.addActionListener(new FileActionListener());
 		menuItemQuit.addActionListener(new QuitActionListener());
 		menuItemSearch.addActionListener(new SearchActionListener());
+		menuItemEnergy.addActionListener(new EnergyActionListener());
 		menuItemVersion.addActionListener(new VersionActionListener());
 
 		menuFile.add(menuItemFile);
 		menuFile.add(menuItemQuit);
 		menuData.add(menuItemSearch);
+		menuData.add(menuItemEnergy);
 		menuHelp.add(menuItemVersion);
 	}
 
@@ -98,6 +102,18 @@ public class AbFormMenu extends JMenuBar {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			AbSubformSearch form = new AbSubformSearch(frame, frame.getExpenses());
+			form.setVisible(true);
+		}
+	}
+
+	/**
+	 * 光熱費メニュー
+	 */
+	private class EnergyActionListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			AbSubformEnergy form = new AbSubformEnergy(frame.getSummaries());
 			form.setVisible(true);
 		}
 	}
