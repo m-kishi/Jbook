@@ -65,6 +65,20 @@ public class AbConstant {
 			/** 収支 */
 			public static final int BALANCE = 3;
 		}
+
+		/** 秘密収支情報 */
+		public static class PRIVATE {
+			/** 日付 */
+			public static final int DATE = 0;
+			/** 名称 */
+			public static final int NAME = 1;
+			/** 金額 */
+			public static final int COST = 2;
+			/** 備考 */
+			public static final int NOTE = 4;
+			/** 収支 */
+			public static final int BALANCE = 3;
+		}
 	}
 
 	/**

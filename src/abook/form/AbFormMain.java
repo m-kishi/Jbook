@@ -43,6 +43,9 @@ public class AbFormMain extends JFrame implements WindowListener {
 	/** 収支タブ */
 	private AbTabBalance tabBalance;
 
+	/** 秘密タブ */
+	private AbTabPrivate tabPrivate;
+
 	/**
 	 * コンストラクタ
 	 * 
@@ -71,6 +74,7 @@ public class AbFormMain extends JFrame implements WindowListener {
 		tabSummary = new AbTabSummary(this, LocalDate.now(), summaries);
 		tabGraphic = new AbTabGraphic(this, LocalDate.now(), summaries);
 		tabBalance = new AbTabBalance(expenses);
+		tabPrivate = new AbTabPrivate(expenses);
 
 		// タブの切り替え設定
 		tab.addChangeListener(new ChangeListener() {
@@ -90,6 +94,10 @@ public class AbFormMain extends JFrame implements WindowListener {
 					case 3:
 						tabBalance.reflesh();
 						break;
+					// 秘密タブ
+					case 4:
+						tabPrivate.reflesh();
+						break;
 				}
 			}
 		});
@@ -98,6 +106,7 @@ public class AbFormMain extends JFrame implements WindowListener {
 		tab.addTab("月次", tabSummary);
 		tab.addTab("推移", tabGraphic);
 		tab.addTab("収支", tabBalance);
+		tab.addTab("秘密", tabPrivate);
 
 		addWindowListener(this);
 		getContentPane().add(tab, BorderLayout.CENTER);
@@ -115,6 +124,7 @@ public class AbFormMain extends JFrame implements WindowListener {
 		tabSummary.initialize(LocalDate.now(), summaries);
 		tabGraphic.initialize(LocalDate.now(), summaries);
 		tabBalance.initialize(expenses);
+		tabPrivate.initialize(expenses);
 	}
 
 	/**
@@ -139,6 +149,7 @@ public class AbFormMain extends JFrame implements WindowListener {
 	public void windowOpened(WindowEvent e) {
 		tabExpense.initialize();
 		tabBalance.initialize(null);
+		tabPrivate.initialize(null);
 	}
 
 	@Override
