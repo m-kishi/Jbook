@@ -39,6 +39,7 @@ public class AbConstant {
 	 * 列インデックス
 	 */
 	public static class COL {
+
 		/** 支出情報 */
 		public static class EXPENSE {
 			/** 日付 */
@@ -51,6 +52,18 @@ public class AbConstant {
 			public static final int COST = 3;
 			/** 備考 */
 			public static final int NOTE = 4;
+		}
+
+		/** 収支情報 */
+		public static class BALANCE {
+			/** 年度 */
+			public static final int YEAR = 0;
+			/** 収入 */
+			public static final int EARN = 1;
+			/** 支出 */
+			public static final int EXPENSE = 2;
+			/** 収支 */
+			public static final int BALANCE = 3;
 		}
 	}
 
@@ -137,6 +150,28 @@ public class AbConstant {
 						FOOD, OTFD, GOOD, FRND, TRFC, PLAY,
 						HOUS, ENGY, CNCT, MEDI, INSU, OTHR
 				)
+		);
+
+		/** 収支情報 */
+		public static class BALANCE {
+
+			/** 収支情報の収入対象 */
+			public static final List<String> EARN = new ArrayList<String>(
+				Arrays.asList(TYPE.EARN, TYPE.BNUS)
+			);
+
+			/** 収支情報の支出対象 */
+			public static final List<String> EXPENSE = new ArrayList<String>(
+				Arrays.asList(
+					FOOD, OTFD, GOOD, FRND, TRFC, PLAY,
+					HOUS, ENGY, CNCT, MEDI, INSU, OTHR, SPCL
+				)
+			);
+		}
+
+		/** 秘密収支の対象種別 */
+		public static final List<String> PRIVATES = new ArrayList<String>(
+				Arrays.asList(PRVI, PRVO)
 		);
 	}
 
