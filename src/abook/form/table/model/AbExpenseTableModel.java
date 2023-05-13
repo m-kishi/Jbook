@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -150,10 +151,10 @@ public class AbExpenseTableModel extends AbstractTableModel implements TableMode
 		try {
 			for (Object[] expense : this.expenses) {
 				String date = UTL.toString((LocalDate) expense[COL.EXPENSE.DATE]);
-				String name = String.valueOf(expense[COL.EXPENSE.NAME]);
-				String type = String.valueOf(expense[COL.EXPENSE.TYPE]);
-				String cost = String.valueOf(expense[COL.EXPENSE.COST]);
-				String note = String.valueOf(expense[COL.EXPENSE.NOTE]);
+				String name = Objects.toString(expense[COL.EXPENSE.NAME], "");
+				String type = Objects.toString(expense[COL.EXPENSE.TYPE], "");
+				String cost = Objects.toString(expense[COL.EXPENSE.COST], "");
+				String note = Objects.toString(expense[COL.EXPENSE.NOTE], "");
 
 				List<String> args = new ArrayList<String>(Arrays.asList(date, name, type, cost));
 				if (args.stream().allMatch(arg -> !UTL.isEmpty(arg))) {

@@ -27,7 +27,7 @@ public class AbFormVersion extends JDialog {
 	private final String TITLE = "Abookのバージョン情報";
 
 	/** バージョン */
-	private final String VERSION = "Version 5.0.0";
+	private final String VERSION = "Version 5.0.1";
 
 	/** コピーライト */
 	private final String COPYRIGHT = "©︎ 2022 https://github.com/m-kishi";
