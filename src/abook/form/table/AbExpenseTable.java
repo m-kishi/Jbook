@@ -114,7 +114,7 @@ public class AbExpenseTable extends JTable {
 	public String getToolTipText(MouseEvent e) {
 		int row = convertRowIndexToModel(rowAtPoint(e.getPoint()));
 		String note = String.valueOf(getModel().getValueAt(row, COL.EXPENSE.NOTE));
-		return UTL.isEmpty(note) ? null : String.format(FMT.NOTE, note);
+		return UTL.isEmpty(note) ? null : String.format(FMT.NOTE, UTL.replayYenMark(note));
 	}
 
 	@Override

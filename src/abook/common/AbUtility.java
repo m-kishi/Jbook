@@ -98,6 +98,19 @@ public class AbUtility {
 				return null;
 			}
 		}
+
+		/**
+		 * ツールチップのための円マーク変換
+		 * 
+		 * @param note 備考
+		 * @return 円マークを &yen; に変換
+		 */
+		public static String replayYenMark(String note) {
+			if (isEmpty(note)) {
+				return "";
+			}
+			return note.replaceAll("¥", "&yen;");
+		}
 	}
 
 	/**
