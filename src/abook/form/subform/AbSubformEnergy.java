@@ -87,6 +87,7 @@ public class AbSubformEnergy extends JDialog implements WindowListener {
 		// テーブルモデル
 		AbEnergyTableModel model = new AbEnergyTableModel(NAME.EL, summaries);
 		tableEl = new JTable(model);
+		tableEl.setName("TableEl");
 
 		// テーブル設定
 		Font font = new Font(Font.DIALOG_INPUT, Font.BOLD, 12);
@@ -129,6 +130,7 @@ public class AbSubformEnergy extends JDialog implements WindowListener {
 		// テーブルモデル
 		AbEnergyTableModel model = new AbEnergyTableModel(NAME.GS, summaries);
 		tableGs = new JTable(model);
+		tableGs.setName("TableGs");
 
 		// テーブル設定
 		Font font = new Font(Font.DIALOG_INPUT, Font.BOLD, 12);
@@ -171,6 +173,7 @@ public class AbSubformEnergy extends JDialog implements WindowListener {
 		// テーブルモデル
 		AbEnergyTableModel model = new AbEnergyTableModel(NAME.WT, summaries);
 		tableWt = new JTable(model);
+		tableWt.setName("TableWt");
 
 		// テーブル設定
 		Font font = new Font(Font.DIALOG_INPUT, Font.BOLD, 12);

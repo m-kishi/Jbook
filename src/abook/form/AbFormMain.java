@@ -25,6 +25,9 @@ import abook.expense.manager.AbSummaryManager;
  */
 public class AbFormMain extends JFrame implements WindowListener {
 
+	/** DBファイルパス */
+	private String dbFilePath;
+
 	/** 支出情報リスト */
 	private List<AbExpense> expenses;
 
@@ -54,6 +57,8 @@ public class AbFormMain extends JFrame implements WindowListener {
 	 */
 	public AbFormMain(String dbFilePath) throws AbException {
 		super();
+
+		this.dbFilePath = dbFilePath;
 
 		// フォーム
 		setTitle("Abook");
@@ -125,6 +130,15 @@ public class AbFormMain extends JFrame implements WindowListener {
 		tabGraphic.initialize(LocalDate.now(), summaries);
 		tabBalance.initialize(expenses);
 		tabPrivate.initialize(expenses);
+	}
+
+	/**
+	 * DBファイルパス取得
+	 * 
+	 * @return DBファイルパス
+	 */
+	public String getDBFilePath() {
+		return dbFilePath;
 	}
 
 	/**

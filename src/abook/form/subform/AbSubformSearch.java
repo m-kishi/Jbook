@@ -24,7 +24,6 @@ import javax.swing.border.EmptyBorder;
 import abook.common.AbConstant.TYPE;
 import abook.common.AbUtility.UTL;
 import abook.expense.AbExpense;
-import abook.form.AbFormMain;
 import abook.form.table.AbExpenseTable;
 import abook.form.table.model.AbExpenseTableModel;
 
@@ -54,10 +53,9 @@ public class AbSubformSearch extends JDialog {
 	/**
 	 * コンストラクタ
 	 * 
-	 * @param frame    親のフレーム
 	 * @param expenses 支出情報リスト
 	 */
-	public AbSubformSearch(AbFormMain frame, List<AbExpense> expenses) {
+	public AbSubformSearch(List<AbExpense> expenses) {
 		super();
 		this.expenses = expenses;
 
@@ -78,6 +76,7 @@ public class AbSubformSearch extends JDialog {
 		names = names.stream().sorted().collect(Collectors.toList());
 		names.add(0, "");
 		cmbName = new JComboBox<String>(names.toArray(new String[] {}));
+		cmbName.setName("CmbName");
 		cmbName.setEditable(true);
 		cmbName.setPreferredSize(new Dimension(253, (int) cmbName.getPreferredSize().getHeight()));
 		cmbName.setMaximumRowCount(17);
@@ -87,6 +86,7 @@ public class AbSubformSearch extends JDialog {
 		List<String> types = new ArrayList<String>(TYPE.EXPENSES);
 		types.add(0, "");
 		cmbType = new JComboBox<String>(types.toArray(new String[] {}));
+		cmbType.setName("CmbType");
 		cmbType.setPreferredSize(new Dimension(80, (int) cmbType.getPreferredSize().getHeight()));
 		cmbType.setMaximumRowCount(17);
 		conditionArea.add(cmbType);
@@ -98,10 +98,11 @@ public class AbSubformSearch extends JDialog {
 
 		// テーブル設定
 		model = new AbExpenseTableModel(new ArrayList<AbExpense>(), false);
-		table = new AbExpenseTable(frame, model);
+		table = new AbExpenseTable(null, model);
 
 		// スクロール領域
 		scrollPane = new JScrollPane(table);
+		scrollPane.setName("ScrollExpenseTable");
 		scrollPane.setBorder(new CompoundBorder(scrollPane.getBorder(), new EmptyBorder(0, 0, 0, 1)));
 
 		// 余白設定(スクロール領域をラップしてそのラップ領域に余白を設定)
@@ -127,7 +128,13 @@ public class AbSubformSearch extends JDialog {
 
 			// 名称で絞り込み
 			if (!UTL.isEmpty(name)) {
-				result = result.stream().filter(exp -> exp.getName().contains(name)).collect(Collectors.toList());
+				if (cmbName.getSelectedIndex() < 0) {
+					// 部分一致
+					result = result.stream().filter(exp -> exp.getName().contains(name)).collect(Collectors.toList());
+				} else {
+					// 完全一致
+					result = result.stream().filter(exp -> exp.getName().equals(name)).collect(Collectors.toList());
+				}
 			}
 
 			// 種別で絞り込み

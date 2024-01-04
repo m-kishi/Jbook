@@ -93,6 +93,7 @@ public class AbTabGraphic extends JPanel {
 
 		// 前年ボタン
 		JButton btnPrevYear = new JButton("<<");
+		btnPrevYear.setName("GraphicPrevYearButton");
 		btnPrevYear.setFont(font);
 		btnPrevYear.setMargin(margin);
 		btnPrevYear.setPreferredSize(size);
@@ -100,13 +101,14 @@ public class AbTabGraphic extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				manager.setPrevYear();
-				repaint(manager.getCurrentDate());
+				repaint(manager.getDate());
 			}
 		});
 		headerArea.add(btnPrevYear);
 
 		// 前月ボタン
 		JButton btnPrevMonth = new JButton("<");
+		btnPrevMonth.setName("GraphicPrevMonthButton");
 		btnPrevMonth.setFont(font);
 		btnPrevMonth.setMargin(margin);
 		btnPrevMonth.setPreferredSize(size);
@@ -114,18 +116,20 @@ public class AbTabGraphic extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				manager.setPrevMonth();
-				repaint(manager.getCurrentDate());
+				repaint(manager.getDate());
 			}
 		});
 		headerArea.add(btnPrevMonth);
 
 		// タイトル
 		lblTitle = new JLabel(UTL.toTitle(date));
+		lblTitle.setName("TabGraphicTitle");
 		lblTitle.setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, 18));
 		headerArea.add(lblTitle);
 
 		// 翌月ボタン
 		JButton btnNextMonth = new JButton(">");
+		btnNextMonth.setName("GraphicNextMonthButton");
 		btnNextMonth.setFont(font);
 		btnNextMonth.setMargin(margin);
 		btnNextMonth.setPreferredSize(size);
@@ -133,13 +137,14 @@ public class AbTabGraphic extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				manager.setNextMonth();
-				repaint(manager.getCurrentDate());
+				repaint(manager.getDate());
 			}
 		});
 		headerArea.add(btnNextMonth);
 
 		// 翌年ボタン
 		JButton btnNextYear = new JButton(">>");
+		btnNextYear.setName("GraphicNextYearButton");
 		btnNextYear.setFont(font);
 		btnNextYear.setMargin(margin);
 		btnNextYear.setPreferredSize(size);
@@ -147,7 +152,7 @@ public class AbTabGraphic extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				manager.setNextYear();
-				repaint(manager.getCurrentDate());
+				repaint(manager.getDate());
 			}
 		});
 		headerArea.add(btnNextYear);
@@ -181,6 +186,12 @@ public class AbTabGraphic extends JPanel {
 		lblX4 = new JLabel("X4");
 		lblX5 = new JLabel("X5");
 		lblX6 = new JLabel("X6");
+		lblX1.setName("LabelX1");
+		lblX2.setName("LabelX2");
+		lblX3.setName("LabelX3");
+		lblX4.setName("LabelX4");
+		lblX5.setName("LabelX5");
+		lblX6.setName("LabelX6");
 
 		// グラフ描画領域
 		canvas = new GraphicCanvas();

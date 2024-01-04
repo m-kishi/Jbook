@@ -8,9 +8,9 @@ import java.awt.Font;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
+import abook.common.AbConstant;
 import abook.common.AbUtility.MSG;
 import abook.form.AbFormMain;
-import abook.property.AbProperty;
 
 /**
  * アプリケーション
@@ -31,11 +31,8 @@ public class App {
 			Font font = new Font(Font.DIALOG_INPUT, Font.BOLD, 12);
 			UIManager.put("TableHeader.font", new FontUIResource(font));
 
-			// 設定ファイルからDBファイルパスを読み込み
-			String dbFilePath = AbProperty.getDBFilePath();
-
 			// メインフォームを表示
-			AbFormMain form = new AbFormMain(dbFilePath);
+			AbFormMain form = new AbFormMain(AbConstant.DB_FILE);
 			form.setVisible(true);
 
 		} catch (Exception ex) {

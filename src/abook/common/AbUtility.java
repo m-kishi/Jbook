@@ -80,11 +80,21 @@ public class AbUtility {
 		}
 
 		/**
-		 * 金額を通過形式へ変換
+		 * 文字列から日付へ変換
+		 * 
+		 * @param string 文字列
+		 * @return 日付
+		 */
+		public static LocalDate toLocalDate(String string) {
+			return LocalDate.parse(string, DateTimeFormatter.ofPattern(FMT.DATE));
+		}
+
+		/**
+		 * 金額を通貨形式へ変換
 		 * 
 		 * @param cost   金額
 		 * @param locale ロケール
-		 * @return 通過形式(¥9,999)
+		 * @return 通貨形式(¥9,999)
 		 */
 		public static String toCurrency(Object cost, Locale locale) {
 			if (cost == null) {
@@ -105,7 +115,7 @@ public class AbUtility {
 		 * @param note 備考
 		 * @return 円マークを &yen; に変換
 		 */
-		public static String replayYenMark(String note) {
+		public static String replaceYenMark(String note) {
 			if (isEmpty(note)) {
 				return "";
 			}

@@ -26,6 +26,7 @@ public class AbBalanceTable extends JTable {
 	 */
 	public AbBalanceTable(AbBalanceTableModel model) {
 		super(model);
+		setName("BalanceTable");
 
 		// テーブル設定
 		setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, 12));

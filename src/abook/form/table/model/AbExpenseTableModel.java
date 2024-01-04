@@ -163,7 +163,7 @@ public class AbExpenseTableModel extends AbstractTableModel implements TableMode
 				}
 			}
 		} catch (AbException ex) {
-			String message = String.format(MESSAGE.DB_FILE_STORE, line, ex.getMessage());
+			String message = String.format(MESSAGE.EXPENSE_ERROR, line, ex.getMessage());
 			AbManager.throwException(message);
 		}
 		return expenses;
@@ -181,6 +181,9 @@ public class AbExpenseTableModel extends AbstractTableModel implements TableMode
 			if (type != null) {
 				setValueAt(type, row, COL.EXPENSE.TYPE);
 			}
+			if (UTL.isEmpty(type)) {
+				setValueAt("", row, COL.EXPENSE.COST);
+			}
 		}
 
 		// 種別列 => 金額の自動補完
@@ -192,7 +195,7 @@ public class AbExpenseTableModel extends AbstractTableModel implements TableMode
 				setValueAt(cost, row, COL.EXPENSE.COST);
 			}
 			if (UTL.isEmpty(name) && UTL.isEmpty(type)) {
-				setValueAt(null, row, COL.EXPENSE.COST);
+				setValueAt("", row, COL.EXPENSE.COST);
 			}
 		}
 	}

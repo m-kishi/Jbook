@@ -45,8 +45,10 @@ public class AbManager {
 		public static final String DB_FILE_READ = "DBファイル読込エラー：%s";
 		/** DBファイルエラー：%d行目：%s */
 		public static final String DB_FILE_LOAD = "DBファイルエラー：%d行目：%s";
-		/** DBファイル登録エラー：%d行目：%s */
-		public static final String DB_FILE_STORE = "DBファイル登録エラー：%d行目：%s";
+		/** DBファイル登録エラー：%s */
+		public static final String DB_FILE_STORE = "DBファイル登録エラー：%s";
+		/** %d行目：%s */
+		public static final String EXPENSE_ERROR = "%d行目：%s";
 		/** 列数が「%d」ではありません． */
 		public static final String DB_FILE_FIELD = "列数が「%d」ではありません．";
 

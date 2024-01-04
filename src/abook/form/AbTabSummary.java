@@ -107,6 +107,7 @@ public class AbTabSummary extends JPanel {
 
 		// 前年ボタン
 		JButton btnPrevYear = new JButton("<<");
+		btnPrevYear.setName("SummaryPrevYearButton");
 		btnPrevYear.setFont(font);
 		btnPrevYear.setMargin(margin);
 		btnPrevYear.setPreferredSize(size);
@@ -121,6 +122,7 @@ public class AbTabSummary extends JPanel {
 
 		// 前月ボタン
 		JButton btnPrevMonth = new JButton("<");
+		btnPrevMonth.setName("SummaryPrevMonthButton");
 		btnPrevMonth.setFont(font);
 		btnPrevMonth.setMargin(margin);
 		btnPrevMonth.setPreferredSize(size);
@@ -135,11 +137,13 @@ public class AbTabSummary extends JPanel {
 
 		// タイトル
 		lblTitle = new JLabel(UTL.toTitle(date));
+		lblTitle.setName("TabSummaryTitle");
 		lblTitle.setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, 18));
 		headerArea.add(lblTitle);
 
 		// 翌月ボタン
 		JButton btnNextMonth = new JButton(">");
+		btnNextMonth.setName("SummaryNextMonthButton");
 		btnNextMonth.setFont(font);
 		btnNextMonth.setMargin(margin);
 		btnNextMonth.setPreferredSize(size);
@@ -154,6 +158,7 @@ public class AbTabSummary extends JPanel {
 
 		// 翌年ボタン
 		JButton btnNextYear = new JButton(">>");
+		btnNextYear.setName("SummaryNextYearButton");
 		btnNextYear.setFont(font);
 		btnNextYear.setMargin(margin);
 		btnNextYear.setPreferredSize(size);
@@ -172,36 +177,36 @@ public class AbTabSummary extends JPanel {
 		panel.setLayout(layout);
 
 		// 種別のラベルと金額
-		TypeLabel lblTypeFood = new TypeLabel(this, TYPE.FOOD);
-		TypeLabel lblTypeOtfd = new TypeLabel(this, TYPE.OTFD);
-		TypeLabel lblTypeGood = new TypeLabel(this, TYPE.GOOD);
-		TypeLabel lblTypeFrnd = new TypeLabel(this, TYPE.FRND);
-		TypeLabel lblTypeTrfc = new TypeLabel(this, TYPE.TRFC);
-		TypeLabel lblTypePaly = new TypeLabel(this, TYPE.PLAY);
-		TypeLabel lblTypeHous = new TypeLabel(this, TYPE.HOUS);
-		TypeLabel lblTypeEngy = new TypeLabel(this, TYPE.ENGY);
-		TypeLabel lblTypeCnct = new TypeLabel(this, TYPE.CNCT);
-		TypeLabel lblTypeMedi = new TypeLabel(this, TYPE.MEDI);
-		TypeLabel lblTypeInsu = new TypeLabel(this, TYPE.INSU);
-		TypeLabel lblTypeOthr = new TypeLabel(this, TYPE.OTHR);
-		TypeLabel lblTypeTtal = new TypeLabel(this, TYPE.TTAL);
-		TypeLabel lblTypeBlnc = new TypeLabel(this, TYPE.BLNC);
+		TypeLabel lblTypeFood = new TypeLabel(this, "LblTypeFood", TYPE.FOOD);
+		TypeLabel lblTypeOtfd = new TypeLabel(this, "LblTypeOtfd", TYPE.OTFD);
+		TypeLabel lblTypeGood = new TypeLabel(this, "LblTypeGood", TYPE.GOOD);
+		TypeLabel lblTypeFrnd = new TypeLabel(this, "LblTypeFrnd", TYPE.FRND);
+		TypeLabel lblTypeTrfc = new TypeLabel(this, "LblTypeTrfc", TYPE.TRFC);
+		TypeLabel lblTypePaly = new TypeLabel(this, "LblTypePaly", TYPE.PLAY);
+		TypeLabel lblTypeHous = new TypeLabel(this, "LblTypeHous", TYPE.HOUS);
+		TypeLabel lblTypeEngy = new TypeLabel(this, "LblTypeEngy", TYPE.ENGY);
+		TypeLabel lblTypeCnct = new TypeLabel(this, "LblTypeCnct", TYPE.CNCT);
+		TypeLabel lblTypeMedi = new TypeLabel(this, "LblTypeMedi", TYPE.MEDI);
+		TypeLabel lblTypeInsu = new TypeLabel(this, "LblTypeInsu", TYPE.INSU);
+		TypeLabel lblTypeOthr = new TypeLabel(this, "LblTypeOthr", TYPE.OTHR);
+		TypeLabel lblTypeTtal = new TypeLabel(this, "LblTypeTtal", TYPE.TTAL);
+		TypeLabel lblTypeBlnc = new TypeLabel(this, "LblTypeBlnc", TYPE.BLNC);
 		LineLabel lblLine1 = new LineLabel("----------------------------------------");
 		LineLabel lblLine2 = new LineLabel("------------------");
-		lblCostFood = new CostLabel(this, TYPE.FOOD, 0);
-		lblCostOtfd = new CostLabel(this, TYPE.OTFD, 0);
-		lblCostGood = new CostLabel(this, TYPE.GOOD, 0);
-		lblCostFrnd = new CostLabel(this, TYPE.FRND, 0);
-		lblCostTrfc = new CostLabel(this, TYPE.TRFC, 0);
-		lblCostPaly = new CostLabel(this, TYPE.PLAY, 0);
-		lblCostHous = new CostLabel(this, TYPE.HOUS, 0);
-		lblCostEngy = new CostLabel(this, TYPE.ENGY, 0);
-		lblCostCnct = new CostLabel(this, TYPE.CNCT, 0);
-		lblCostMedi = new CostLabel(this, TYPE.MEDI, 0);
-		lblCostInsu = new CostLabel(this, TYPE.INSU, 0);
-		lblCostOthr = new CostLabel(this, TYPE.OTHR, 0);
-		lblCostTtal = new CostLabel(this, TYPE.TTAL, 0);
-		lblCostBlnc = new CostLabel(this, TYPE.BLNC, 0);
+		lblCostFood = new CostLabel(this, "LblCostFood", TYPE.FOOD, 0);
+		lblCostOtfd = new CostLabel(this, "LblCostOtfd", TYPE.OTFD, 0);
+		lblCostGood = new CostLabel(this, "LblCostGood", TYPE.GOOD, 0);
+		lblCostFrnd = new CostLabel(this, "LblCostFrnd", TYPE.FRND, 0);
+		lblCostTrfc = new CostLabel(this, "LblCostTrfc", TYPE.TRFC, 0);
+		lblCostPaly = new CostLabel(this, "LblCostPaly", TYPE.PLAY, 0);
+		lblCostHous = new CostLabel(this, "LblCostHous", TYPE.HOUS, 0);
+		lblCostEngy = new CostLabel(this, "LblCostEngy", TYPE.ENGY, 0);
+		lblCostCnct = new CostLabel(this, "LblCostCnct", TYPE.CNCT, 0);
+		lblCostMedi = new CostLabel(this, "LblCostMedi", TYPE.MEDI, 0);
+		lblCostInsu = new CostLabel(this, "LblCostInsu", TYPE.INSU, 0);
+		lblCostOthr = new CostLabel(this, "LblCostOthr", TYPE.OTHR, 0);
+		lblCostTtal = new CostLabel(this, "LblCostTtal", TYPE.TTAL, 0);
+		lblCostBlnc = new CostLabel(this, "LblCostBlnc", TYPE.BLNC, 0);
 
 		// レイアウトの配置設定
 		layout.putConstraint(SpringLayout.NORTH, lblTypeFood, 11, SpringLayout.NORTH, panel);
@@ -375,7 +380,7 @@ public class AbTabSummary extends JPanel {
 	 * 月次情報の表示設定
 	 */
 	public void setSummary() {
-		lblTitle.setText(UTL.toTitle(manager.getCurrentDate()));
+		lblTitle.setText(UTL.toTitle(manager.getDate()));
 		lblCostFood.setCost(manager.getCost(TYPE.FOOD));
 		lblCostOtfd.setCost(manager.getCost(TYPE.OTFD));
 		lblCostGood.setCost(manager.getCost(TYPE.GOOD));
@@ -395,17 +400,19 @@ public class AbTabSummary extends JPanel {
 	/**
 	 * 種別ラベル
 	 */
-	private static class TypeLabel extends JLabel {
+	public static class TypeLabel extends JLabel {
 
 		/**
 		 * コンストラクタ
 		 * 
 		 * @param tab  月次タブ
+		 * @param name ID
 		 * @param type 種別
 		 */
-		public TypeLabel(AbTabSummary tab, String type) {
+		public TypeLabel(AbTabSummary tab, String name, String type) {
 			super(type);
 
+			setName(name);
 			setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, 14));
 			if (TYPE.SUMMARIES.contains(type)) {
 				addMouseListener(new MouseAction(tab, this, type));
@@ -416,19 +423,21 @@ public class AbTabSummary extends JPanel {
 	/**
 	 * 金額ラベル
 	 */
-	private static class CostLabel extends JLabel {
+	public static class CostLabel extends JLabel {
 
 		/**
 		 * コンストラクタ
 		 * 
 		 * @param tab  月次タブ
+		 * @param name ID
 		 * @param type 種別
 		 * @param cost 金額
 		 */
-		public CostLabel(AbTabSummary tab, String type, int cost) {
+		public CostLabel(AbTabSummary tab, String name, String type, int cost) {
 			super();
 
 			setCost(cost);
+			setName(name);
 			setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, 14));
 			setHorizontalAlignment(JLabel.RIGHT);
 			if (TYPE.SUMMARIES.contains(type)) {
@@ -499,7 +508,7 @@ public class AbTabSummary extends JPanel {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			AbSubformType form = new AbSubformType(tab.manager.getCurrentDate(), type, tab.frame.getExpenses());
+			AbSubformType form = new AbSubformType(tab.manager.getDate(), type, tab.frame.getExpenses());
 			form.setVisible(true);
 		}
 

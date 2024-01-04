@@ -31,7 +31,7 @@ import abook.expense.AbExpense;
 public class AbDBManager {
 
 	/** フィールド数 */
-	private static final int FIELD_SIZE = 5;
+	public static final int FIELD_SIZE = 5;
 
 	/**
 	 * コンストラクタ

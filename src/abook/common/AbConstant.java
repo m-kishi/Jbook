@@ -19,6 +19,9 @@ public class AbConstant {
 	private AbConstant() {
 	}
 
+	/** DBファイル */
+	public static final String DB_FILE = "Abook.db";
+
 	/**
 	 * フォーマット
 	 */

@@ -30,6 +30,7 @@ public class AbPrivateTable extends JTable {
 	 */
 	public AbPrivateTable(AbPrivateTableModel model) {
 		super(model);
+		setName("PrivateTable");
 
 		// テーブル設定
 		setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, 12));
@@ -61,6 +62,6 @@ public class AbPrivateTable extends JTable {
 	public String getToolTipText(MouseEvent e) {
 		int row = convertRowIndexToModel(rowAtPoint(e.getPoint()));
 		String note = String.valueOf(getModel().getValueAt(row, COL.EXPENSE.NOTE));
-		return UTL.isEmpty(note) ? null : String.format(FMT.NOTE, UTL.replayYenMark(note));
+		return UTL.isEmpty(note) ? null : String.format(FMT.NOTE, UTL.replaceYenMark(note));
 	}
 }

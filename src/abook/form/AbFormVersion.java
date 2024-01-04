@@ -21,19 +21,19 @@ import javax.swing.SpringLayout;
 public class AbFormVersion extends JDialog {
 
 	/** アプリ */
-	private final String APP_NAME = "Abook";
+	public static final String APP_NAME = "Abook";
 
 	/** タイトル */
-	private final String TITLE = "Abookのバージョン情報";
+	public static final String TITLE = "Abookのバージョン情報";
 
 	/** バージョン */
-	private final String VERSION = "Version 5.0.2";
+	public static final String VERSION = "Version 5.1.0";
 
 	/** コピーライト */
-	private final String COPYRIGHT = "©︎ 2022 https://github.com/m-kishi";
+	public static final String COPYRIGHT = "©︎ 2022 https://github.com/m-kishi";
 
 	/** アプリの説明 */
-	private final String DESCRIPTION = "This is my account book application.";
+	public static final String DESCRIPTION = "This is my account book application.";
 
 	/**
 	 * コンストラクタ

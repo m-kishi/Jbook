@@ -5,19 +5,13 @@ package abook.form;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
-import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import abook.common.AbException;
-import abook.common.AbManager.MESSAGE;
-import abook.common.AbUtility.MSG;
 import abook.form.subform.AbSubformEnergy;
 import abook.form.subform.AbSubformSearch;
-import abook.property.AbProperty;
 
 /**
  * メニューバー
@@ -35,26 +29,20 @@ public class AbFormMenu extends JMenuBar {
 	public AbFormMenu(AbFormMain frame) {
 		super();
 		this.frame = frame;
+		setName("AbFormMenu");
 
-		JMenu menuFile = new JMenu("ファイル");
-		JMenu menuData = new JMenu("データ");
-		JMenu menuHelp = new JMenu("ヘルプ");
+		JMenu menuFile = createMenu("MenuFile", "ファイル");
+		JMenu menuData = createMenu("MenuData", "データ");
+		JMenu menuHelp = createMenu("MenuHelp", "ヘルプ");
 		add(menuFile);
 		add(menuData);
 		add(menuHelp);
 
-		JMenuItem menuItemFile = new JMenuItem("DBファイル");
-		JMenuItem menuItemQuit = new JMenuItem("終了");
-		JMenuItem menuItemSearch = new JMenuItem("検索");
-		JMenuItem menuItemEnergy = new JMenuItem("光熱費");
-		JMenuItem menuItemVersion = new JMenuItem("バージョン情報");
-		menuItemFile.addActionListener(new FileActionListener());
-		menuItemQuit.addActionListener(new QuitActionListener());
-		menuItemSearch.addActionListener(new SearchActionListener());
-		menuItemEnergy.addActionListener(new EnergyActionListener());
-		menuItemVersion.addActionListener(new VersionActionListener());
+		JMenuItem menuItemQuit = createMenuItem("MenuItemQuit", "終了", new QuitActionListener());
+		JMenuItem menuItemSearch = createMenuItem("MenuItemSearch", "検索", new SearchActionListener());
+		JMenuItem menuItemEnergy = createMenuItem("MenuItemEnergy", "光熱費", new EnergyActionListener());
+		JMenuItem menuItemVersion = createMenuItem("MenuItemVersion", "バージョン情報", new VersionActionListener());
 
-		menuFile.add(menuItemFile);
 		menuFile.add(menuItemQuit);
 		menuData.add(menuItemSearch);
 		menuData.add(menuItemEnergy);
@@ -62,25 +50,31 @@ public class AbFormMenu extends JMenuBar {
 	}
 
 	/**
-	 * DBファイルメニュー
+	 * メニュー生成
+	 * 
+	 * @param name ID
+	 * @param text テキスト
+	 * @return メニュー
 	 */
-	private class FileActionListener implements ActionListener {
+	private JMenu createMenu(String name, String text) {
+		JMenu menu = new JMenu(text);
+		menu.setName(name);
+		return menu;
+	}
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			JFileChooser fileChooser = new JFileChooser();
-			int state = fileChooser.showOpenDialog(frame);
-			if (state == JFileChooser.APPROVE_OPTION) {
-				File file = fileChooser.getSelectedFile();
-				try {
-					AbProperty.storeDBFilePath(file.getAbsolutePath());
-					MSG.ok(frame, "確認", MESSAGE.SETTING_COMPLETE);
-					System.exit(0);
-				} catch (AbException ex) {
-					MSG.abort(frame, ex.getMessage());
-				}
-			}
-		}
+	/**
+	 * メニューアイテム生成
+	 * 
+	 * @param name     ID
+	 * @param text     テキスト
+	 * @param listener クリック時のアクション
+	 * @return メニューアイテム
+	 */
+	private JMenuItem createMenuItem(String name, String text, ActionListener listener) {
+		JMenuItem menuItem = new JMenuItem(text);
+		menuItem.setName(name);
+		menuItem.addActionListener(listener);
+		return menuItem;
 	}
 
 	/**
@@ -101,7 +95,7 @@ public class AbFormMenu extends JMenuBar {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			AbSubformSearch form = new AbSubformSearch(frame, frame.getExpenses());
+			AbSubformSearch form = new AbSubformSearch(frame.getExpenses());
 			form.setVisible(true);
 		}
 	}

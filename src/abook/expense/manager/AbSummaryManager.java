@@ -41,7 +41,7 @@ public class AbSummaryManager {
 	 * 
 	 * @param date 対象日付
 	 */
-	public void setCurrentSummary(LocalDate date) {
+	private void setCurrentSummary(LocalDate date) {
 		summary = new AbSummary(date, new ArrayList<AbExpense>());
 		var currentSummary = summaries.stream().filter(sum ->
 				sum.getYear() == date.getYear() && sum.getMonth() == date.getMonthValue()
@@ -54,7 +54,7 @@ public class AbSummaryManager {
 	 * 
 	 * @return 現在の月次情報の日付
 	 */
-	public LocalDate getCurrentDate() {
+	public LocalDate getDate() {
 		return LocalDate.of(summary.getYear(), summary.getMonth(), 1);
 	}
 
@@ -64,7 +64,7 @@ public class AbSummaryManager {
 	 * @return yyyy年MM月
 	 */
 	public String getTitle() {
-		return UTL.toTitle(getCurrentDate());
+		return UTL.toTitle(getDate());
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class AbSummaryManager {
 	 * 前年へ切り替え
 	 */
 	public void setPrevYear() {
-		LocalDate date = getCurrentDate().minusYears(1);
+		LocalDate date = getDate().minusYears(1);
 		setCurrentSummary(date);
 	}
 
@@ -89,7 +89,7 @@ public class AbSummaryManager {
 	 * 前月へ切り替え
 	 */
 	public void setPrevMonth() {
-		LocalDate date = getCurrentDate().minusMonths(1);
+		LocalDate date = getDate().minusMonths(1);
 		setCurrentSummary(date);
 	}
 
@@ -97,7 +97,7 @@ public class AbSummaryManager {
 	 * 翌月へ切り替え
 	 */
 	public void setNextMonth() {
-		LocalDate date = getCurrentDate().plusMonths(1);
+		LocalDate date = getDate().plusMonths(1);
 		setCurrentSummary(date);
 	}
 
@@ -105,7 +105,7 @@ public class AbSummaryManager {
 	 * 翌年へ切り替え
 	 */
 	public void setNextYear() {
-		LocalDate date = getCurrentDate().plusYears(1);
+		LocalDate date = getDate().plusYears(1);
 		setCurrentSummary(date);
 	}
 

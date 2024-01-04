@@ -4,7 +4,6 @@
 package abook.form;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,7 +23,6 @@ import abook.common.AbUtility.MSG;
 import abook.expense.AbExpense;
 import abook.form.table.AbExpenseTable;
 import abook.form.table.model.AbExpenseTableModel;
-import abook.property.AbProperty;
 
 /**
  * 支出タブ
@@ -77,6 +75,7 @@ public class AbTabExpense extends JPanel {
 
 		// スクロール領域
 		scrollPane = new JScrollPane(table);
+		scrollPane.setName("ScrollExpenseTable");
 		scrollPane.setBorder(new CompoundBorder(scrollPane.getBorder(), new EmptyBorder(0, 0, 0, 1)));
 
 		// 余白設定
@@ -91,13 +90,8 @@ public class AbTabExpense extends JPanel {
 	 * 画面初期表示時の初期化処理
 	 */
 	public void initialize() {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
-				scrollBar.setValue(scrollBar.getMaximum());
-			}
-		});
+		JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
+		scrollBar.setValue(scrollBar.getMaximum());
 	}
 
 	/**
@@ -119,9 +113,8 @@ public class AbTabExpense extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			try {
-				String dbFilePath = AbProperty.getDBFilePath();
 				List<AbExpense> expenses = model.getExpenses();
-				AbDBManager.store(dbFilePath, expenses);
+				AbDBManager.store(frame.getDBFilePath(), expenses);
 
 				// 再読み込みしてメッセージ表示
 				model.load(expenses);

@@ -1,0 +1,14 @@
+// ------------------------------------------------------------
+// © 2022 https://github.com/m-kishi
+// ------------------------------------------------------------
+package test.table.renderer;
+
+import org.junit.jupiter.api.Disabled;
+
+/**
+ * テスト:名称セル
+ */
+@Disabled
+public class AbExpenseNameCellRendererTest {
+
+}

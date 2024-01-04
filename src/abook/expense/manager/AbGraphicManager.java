@@ -26,7 +26,7 @@ import abook.expense.AbSummary;
 public class AbGraphicManager {
 
 	/** 表示年月 */
-	private LocalDate currentDate;
+	private LocalDate date;
 
 	/** 月次情報リスト */
 	private List<AbSummary> summaries;
@@ -40,11 +40,11 @@ public class AbGraphicManager {
 	/**
 	 * コンストラクタ
 	 * 
-	 * @param currentDate 日付
-	 * @param summaries   月次情報リスト
+	 * @param date      日付
+	 * @param summaries 月次情報リスト
 	 */
-	public AbGraphicManager(LocalDate currentDate, List<AbSummary> summaries) {
-		this.currentDate = currentDate;
+	public AbGraphicManager(LocalDate date, List<AbSummary> summaries) {
+		this.date = date;
 		this.summaries = summaries;
 		lines = createBaseLines();
 		graphics = createGraphics();
@@ -77,7 +77,7 @@ public class AbGraphicManager {
 		AbGraphic gdG = new AbGraphic(Color.GRAY);
 		AbGraphic gdW = new AbGraphic(Color.BLUE);
 
-		for (LocalDate dt = currentDate.minusYears(1); dt.isBefore(currentDate) || dt.isEqual(currentDate); dt = dt.plusMonths(1)) {
+		for (LocalDate dt = date.minusYears(1); dt.isBefore(date) || dt.isEqual(date); dt = dt.plusMonths(1)) {
 			AbSummary emptySummary = new AbSummary(dt, new ArrayList<AbExpense>());
 
 			// lambda は final なローカル変数しかアクセスできないため，実質 final となるような変数に代入
@@ -115,8 +115,8 @@ public class AbGraphicManager {
 	 * 
 	 * @return 現在の推移情報の日付
 	 */
-	public LocalDate getCurrentDate() {
-		return currentDate;
+	public LocalDate getDate() {
+		return date;
 	}
 
 	/**
@@ -125,14 +125,14 @@ public class AbGraphicManager {
 	 * @return yyyy年MM月
 	 */
 	public String getTitle() {
-		return UTL.toTitle(currentDate);
+		return UTL.toTitle(date);
 	}
 
 	/**
 	 * 前年へシフト
 	 */
 	public void setPrevYear() {
-		currentDate = currentDate.minusYears(1);
+		date = date.minusYears(1);
 		graphics = createGraphics();
 	}
 
@@ -140,7 +140,7 @@ public class AbGraphicManager {
 	 * 前月へシフト
 	 */
 	public void setPrevMonth() {
-		currentDate = currentDate.minusMonths(1);
+		date = date.minusMonths(1);
 		graphics = createGraphics();
 	}
 
@@ -148,7 +148,7 @@ public class AbGraphicManager {
 	 * 翌月へシフト
 	 */
 	public void setNextMonth() {
-		currentDate = currentDate.plusMonths(1);
+		date = date.plusMonths(1);
 		graphics = createGraphics();
 	}
 
@@ -156,7 +156,7 @@ public class AbGraphicManager {
 	 * 翌年へシフト
 	 */
 	public void setNextYear() {
-		currentDate = currentDate.plusYears(1);
+		date = date.plusYears(1);
 		graphics = createGraphics();
 	}
 
