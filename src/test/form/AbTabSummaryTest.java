@@ -101,6 +101,7 @@ public class AbTabSummaryTest extends AbFormAbstractMain {
 				add(new String[] { tdy, "name", TYPE.EARN, "150000" });
 				add(new String[] { tdy, "name", TYPE.PRVI, " 20000" });
 				add(new String[] { tdy, "name", TYPE.PRVO, " 10000" });
+				add(new String[] { tdy, "name", TYPE.FNCE, "100000" });
 				add(new String[] { py1, "name", TYPE.FOOD, " 10100" });
 				add(new String[] { py1, "name", TYPE.OTFD, " 15100" });
 				add(new String[] { py1, "name", TYPE.GOOD, "  1300" });
@@ -116,6 +117,7 @@ public class AbTabSummaryTest extends AbFormAbstractMain {
 				add(new String[] { py1, "name", TYPE.EARN, "150100" });
 				add(new String[] { py1, "name", TYPE.PRVI, " 20000" });
 				add(new String[] { py1, "name", TYPE.PRVO, " 10000" });
+				add(new String[] { py1, "name", TYPE.FNCE, "200000" });
 				add(new String[] { py2, "name", TYPE.FOOD, " 10200" });
 				add(new String[] { py2, "name", TYPE.OTFD, " 15200" });
 				add(new String[] { py2, "name", TYPE.GOOD, "  1400" });
@@ -131,6 +133,7 @@ public class AbTabSummaryTest extends AbFormAbstractMain {
 				add(new String[] { py2, "name", TYPE.EARN, "150200" });
 				add(new String[] { py2, "name", TYPE.PRVI, " 20000" });
 				add(new String[] { py2, "name", TYPE.PRVO, " 10000" });
+				add(new String[] { py2, "name", TYPE.FNCE, "300000" });
 				add(new String[] { pm1, "name", TYPE.FOOD, " 10300" });
 				add(new String[] { pm1, "name", TYPE.OTFD, " 15300" });
 				add(new String[] { pm1, "name", TYPE.GOOD, "  1500" });
@@ -146,6 +149,7 @@ public class AbTabSummaryTest extends AbFormAbstractMain {
 				add(new String[] { pm1, "name", TYPE.EARN, "150300" });
 				add(new String[] { pm1, "name", TYPE.PRVI, " 20000" });
 				add(new String[] { pm1, "name", TYPE.PRVO, " 10000" });
+				add(new String[] { pm1, "name", TYPE.FNCE, "300000" });
 				add(new String[] { pm2, "name", TYPE.FOOD, " 10400" });
 				add(new String[] { pm2, "name", TYPE.OTFD, " 15400" });
 				add(new String[] { pm2, "name", TYPE.GOOD, "  1600" });
@@ -161,6 +165,7 @@ public class AbTabSummaryTest extends AbFormAbstractMain {
 				add(new String[] { pm2, "name", TYPE.EARN, "150400" });
 				add(new String[] { pm2, "name", TYPE.PRVI, " 20000" });
 				add(new String[] { pm2, "name", TYPE.PRVO, " 10000" });
+				add(new String[] { pm2, "name", TYPE.FNCE, "400000" });
 				add(new String[] { nm1, "name", TYPE.FOOD, " 10500" });
 				add(new String[] { nm1, "name", TYPE.OTFD, " 15500" });
 				add(new String[] { nm1, "name", TYPE.GOOD, "  1700" });
@@ -176,6 +181,7 @@ public class AbTabSummaryTest extends AbFormAbstractMain {
 				add(new String[] { nm1, "name", TYPE.EARN, "150500" });
 				add(new String[] { nm1, "name", TYPE.PRVI, " 20000" });
 				add(new String[] { nm1, "name", TYPE.PRVO, " 10000" });
+				add(new String[] { nm1, "name", TYPE.FNCE, "500000" });
 				add(new String[] { nm2, "name", TYPE.FOOD, " 10600" });
 				add(new String[] { nm2, "name", TYPE.OTFD, " 15600" });
 				add(new String[] { nm2, "name", TYPE.GOOD, "  1800" });
@@ -191,6 +197,7 @@ public class AbTabSummaryTest extends AbFormAbstractMain {
 				add(new String[] { nm2, "name", TYPE.EARN, "150600" });
 				add(new String[] { nm2, "name", TYPE.PRVI, " 20000" });
 				add(new String[] { nm2, "name", TYPE.PRVO, " 10000" });
+				add(new String[] { nm2, "name", TYPE.FNCE, "600000" });
 				add(new String[] { ny1, "name", TYPE.FOOD, " 10700" });
 				add(new String[] { ny1, "name", TYPE.OTFD, " 15700" });
 				add(new String[] { ny1, "name", TYPE.GOOD, "  1900" });
@@ -206,6 +213,7 @@ public class AbTabSummaryTest extends AbFormAbstractMain {
 				add(new String[] { ny1, "name", TYPE.EARN, "150700" });
 				add(new String[] { ny1, "name", TYPE.PRVI, " 20000" });
 				add(new String[] { ny1, "name", TYPE.PRVO, " 10000" });
+				add(new String[] { ny1, "name", TYPE.FNCE, "700000" });
 				add(new String[] { ny2, "name", TYPE.FOOD, " 10800" });
 				add(new String[] { ny2, "name", TYPE.OTFD, " 15800" });
 				add(new String[] { ny2, "name", TYPE.GOOD, "  2000" });
@@ -221,6 +229,7 @@ public class AbTabSummaryTest extends AbFormAbstractMain {
 				add(new String[] { ny2, "name", TYPE.EARN, "150800" });
 				add(new String[] { ny2, "name", TYPE.PRVI, " 20000" });
 				add(new String[] { ny2, "name", TYPE.PRVO, " 10000" });
+				add(new String[] { ny2, "name", TYPE.FNCE, "800000" });
 			}
 		};
 

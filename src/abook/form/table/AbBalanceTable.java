@@ -35,20 +35,24 @@ public class AbBalanceTable extends JTable {
 		TableColumn colEarn = getColumnModel().getColumn(COL.BALANCE.EARN);
 		TableColumn colExpense = getColumnModel().getColumn(COL.BALANCE.EXPENSE);
 		TableColumn colBalance = getColumnModel().getColumn(COL.BALANCE.BALANCE);
+		TableColumn colFinance = getColumnModel().getColumn(COL.BALANCE.FINANCE);
 		AbGeneralYearCellRenderer cellYear = new AbGeneralYearCellRenderer();
 		AbGeneralCostCellRenderer cellEarn = new AbGeneralCostCellRenderer();
 		AbGeneralCostCellRenderer cellExpense = new AbGeneralCostCellRenderer();
 		AbGeneralCostCellRenderer cellBalance = new AbGeneralCostCellRenderer();
+		AbGeneralCostCellRenderer cellFinance = new AbGeneralCostCellRenderer();
 		colYear.setCellRenderer(cellYear);
 		colEarn.setCellRenderer(cellEarn);
 		colExpense.setCellRenderer(cellExpense);
 		colBalance.setCellRenderer(cellBalance);
+		colFinance.setCellRenderer(cellFinance);
 
 		// テーブル列幅設定
 		TableColumnModel columns = getColumnModel();
 		columns.getColumn(COL.BALANCE.YEAR).setPreferredWidth(62);
-		columns.getColumn(COL.BALANCE.EARN).setPreferredWidth(107);
-		columns.getColumn(COL.BALANCE.EXPENSE).setPreferredWidth(107);
-		columns.getColumn(COL.BALANCE.BALANCE).setPreferredWidth(107);
+		columns.getColumn(COL.BALANCE.EARN).setPreferredWidth(96);
+		columns.getColumn(COL.BALANCE.EXPENSE).setPreferredWidth(96);
+		columns.getColumn(COL.BALANCE.BALANCE).setPreferredWidth(96);
+		columns.getColumn(COL.BALANCE.FINANCE).setPreferredWidth(96);
 	}
 }

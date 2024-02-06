@@ -49,6 +49,7 @@ public class AbTabBalanceTest extends AbFormAbstractMain {
 				add(new String[] { "2022-04-01", "name", "特出　", " 50000" });
 				add(new String[] { "2022-04-30", "name", "特入　", " 10000" });
 				add(new String[] { "2022-04-30", "name", "秘密入", " 11000" });
+				add(new String[] { "2022-04-30", "name", "投資　", "110000" });
 				add(new String[] { "2023-03-01", "name", "収入　", "200000" });
 				add(new String[] { "2023-03-01", "name", "収入　", "400000" });
 				add(new String[] { "2023-03-01", "name", "食費　", "300000" });
@@ -57,6 +58,7 @@ public class AbTabBalanceTest extends AbFormAbstractMain {
 				add(new String[] { "2023-03-01", "name", "特出　", " 30000" });
 				add(new String[] { "2023-03-31", "name", "特入　", " 15000" });
 				add(new String[] { "2023-03-31", "name", "秘密出", " 10000" });
+				add(new String[] { "2023-03-31", "name", "投資　", "220000" });
 				add(new String[] { "2023-04-01", "name", "収入　", "600000" });
 				add(new String[] { "2023-04-01", "name", "収入　", "800000" });
 				add(new String[] { "2023-04-01", "name", "食費　", "200000" });
@@ -65,6 +67,7 @@ public class AbTabBalanceTest extends AbFormAbstractMain {
 				add(new String[] { "2023-04-01", "name", "特出　", " 40000" });
 				add(new String[] { "2023-04-30", "name", "特入　", "  1000" });
 				add(new String[] { "2023-04-30", "name", "秘密入", " 30000" });
+				add(new String[] { "2023-04-30", "name", "投資　", "330000" });
 				add(new String[] { "2024-03-01", "name", "収入　", "300000" });
 				add(new String[] { "2024-03-01", "name", "収入　", "700000" });
 				add(new String[] { "2024-03-01", "name", "食費　", "100000" });
@@ -73,6 +76,7 @@ public class AbTabBalanceTest extends AbFormAbstractMain {
 				add(new String[] { "2024-03-01", "name", "特出　", " 18000" });
 				add(new String[] { "2024-03-31", "name", "特入　", "  2000" });
 				add(new String[] { "2024-03-31", "name", "秘密出", "  9000" });
+				add(new String[] { "2024-03-31", "name", "投資　", "440000" });
 				add(new String[] { "2024-04-01", "name", "収入　", "     0" });
 				add(new String[] { "2024-04-01", "name", "収入　", "     0" });
 				add(new String[] { "2024-04-01", "name", "食費　", "300000" });
@@ -80,6 +84,7 @@ public class AbTabBalanceTest extends AbFormAbstractMain {
 				add(new String[] { "2024-04-01", "name", "特出　", " 80000" });
 				add(new String[] { "2024-04-01", "name", "特出　", " 20000" });
 				add(new String[] { "2024-04-01", "name", "秘密入", " 30000" });
+				add(new String[] { "2024-04-30", "name", "投資　", "550000" });
 			}
 		};
 
@@ -118,6 +123,7 @@ public class AbTabBalanceTest extends AbFormAbstractMain {
 		assertEquals("収入", table.getColumnName(1));
 		assertEquals("支出", table.getColumnName(2));
 		assertEquals("収支", table.getColumnName(3));
+		assertEquals("投資", table.getColumnName(4));
 	}
 
 	/**
@@ -264,5 +270,30 @@ public class AbTabBalanceTest extends AbFormAbstractMain {
 		assertEquals( 1265000, table.getValueAt(1, COL.BALANCE.BALANCE));
 		assertEquals(-1300000, table.getValueAt(2, COL.BALANCE.BALANCE));
 		assertEquals( 1010000, table.getValueAt(3, COL.BALANCE.BALANCE));
+	}
+
+	/**
+	 * 投資のテスト
+	 * 
+	 * @throws AbException
+	 */
+	@Test
+	public void balanceWithFinance() throws AbException {
+
+		// 画面を表示
+		AbFormMain frame = showFormMain(DB_FILE_EXIST);
+
+		// タブを切り替え
+		changeTab(frame, 3);
+
+		// 収支情報テーブルを取得
+		JTable table = getBalanceTable(frame);
+		assertNotNull(table);
+
+		// 投資を確認
+		assertEquals( 330000, table.getValueAt(0, COL.BALANCE.FINANCE));
+		assertEquals( 770000, table.getValueAt(1, COL.BALANCE.FINANCE));
+		assertEquals( 550000, table.getValueAt(2, COL.BALANCE.FINANCE));
+		assertEquals(1650000, table.getValueAt(3, COL.BALANCE.FINANCE));
 	}
 }

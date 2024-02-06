@@ -28,6 +28,7 @@ public class AbBalanceTableModel extends AbstractTableModel {
 			"収入",
 			"支出",
 			"収支",
+			"投資",
 	};
 
 	/**
@@ -68,9 +69,14 @@ public class AbBalanceTableModel extends AbstractTableModel {
 			int earn = 0;
 			int expense = 0;
 			int balance = 0;
+			int finance = 0;
 			for (var groupEntry : groupByType.entrySet()) {
 				String type = groupEntry.getKey();
 				Integer cost = groupEntry.getValue();
+
+				if (TYPE.FNCE.equals(type)) {
+					finance = cost;
+				}
 
 				if (TYPE.BALANCE.EARN.contains(type)) {
 					earn += cost;
@@ -82,7 +88,7 @@ public class AbBalanceTableModel extends AbstractTableModel {
 					balance -= cost;
 				}
 			}
-			balances.add(new Object[] { year, earn, expense, balance });
+			balances.add(new Object[] { year, earn, expense, balance, finance });
 		}
 
 		// 合計
@@ -92,7 +98,8 @@ public class AbBalanceTableModel extends AbstractTableModel {
 							9999,
 							balances.stream().mapToInt(bln -> (int) bln[COL.BALANCE.EARN]).sum(),
 							balances.stream().mapToInt(bln -> (int) bln[COL.BALANCE.EXPENSE]).sum(),
-							balances.stream().mapToInt(bln -> (int) bln[COL.BALANCE.BALANCE]).sum()
+							balances.stream().mapToInt(bln -> (int) bln[COL.BALANCE.BALANCE]).sum(),
+							balances.stream().mapToInt(bln -> (int) bln[COL.BALANCE.FINANCE]).sum(),
 					}
 			);
 		}

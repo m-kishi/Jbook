@@ -73,6 +73,9 @@ public class AbSummaryManagerTest {
 						new AbExpense("2023-10-29", "名称Ｚ", TYPE.PRVI, "1800", ""),
 						new AbExpense("2023-10-30", "名称１", TYPE.PRVO, "1400", ""),
 						new AbExpense("2023-10-31", "名称２", TYPE.PRVO, "1400", ""),
+						new AbExpense("2023-10-31", "名称３", TYPE.FNCE, "50000", ""),
+						new AbExpense("2023-10-31", "名称４", TYPE.GAIN, "60000", ""),
+						new AbExpense("2023-10-31", "名称５", TYPE.LOSS, "70000", ""),
 						new AbExpense("2022-10-01", "名称Ａ", TYPE.FOOD, "1100", ""),
 						new AbExpense("2022-10-01", "名称Ｂ", TYPE.EARN, "11000", ""),
 						new AbExpense("2021-10-01", "名称Ｃ", TYPE.FOOD, "1200", ""),
@@ -209,6 +212,9 @@ public class AbSummaryManagerTest {
 			"特出　,   8800",
 			"秘密入,   3600",
 			"秘密出,   2800",
+			"投資　,  50000",
+			"利益　,  60000",
+			"損失　,  70000",
 	})
 	public void getCost(String type, int expected) {
 		assertEquals(expected, manager.getCost(type.strip()));

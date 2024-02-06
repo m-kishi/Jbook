@@ -154,6 +154,7 @@ public class AbSubformTypeTest extends AbFormAbstract {
 		assertEquals("名称", table.getColumnName(1));
 		assertEquals("種別", table.getColumnName(2));
 		assertEquals("金額", table.getColumnName(3));
+		assertEquals("備考", table.getColumnName(4));
 	}
 
 	/**
@@ -190,6 +191,7 @@ public class AbSubformTypeTest extends AbFormAbstract {
 			assertEquals(expected.get(i).getName(), table.getValueAt(i, COL.EXPENSE.NAME));
 			assertEquals(expected.get(i).getType(), table.getValueAt(i, COL.EXPENSE.TYPE));
 			assertEquals(expected.get(i).getCost(), table.getValueAt(i, COL.EXPENSE.COST));
+			assertEquals(expected.get(i).getNote(), table.getValueAt(i, COL.EXPENSE.NOTE));
 		}
 	}
 
@@ -268,7 +270,7 @@ public class AbSubformTypeTest extends AbFormAbstract {
 
 		// 背景色の確認
 		for (int row = 0; row < table.getRowCount(); row++) {
-			for (int col = COL.EXPENSE.DATE; col <= COL.EXPENSE.COST; col++) {
+			for (int col = COL.EXPENSE.DATE; col <= COL.EXPENSE.NOTE; col++) {
 				Component component = getTableCellRendererComponent(table, row, col);
 				if (row == 3) {
 					assertEquals(COLOR.NOTE_BACKGROUND, component.getBackground());

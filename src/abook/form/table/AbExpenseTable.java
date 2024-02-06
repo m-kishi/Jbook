@@ -27,11 +27,13 @@ import abook.form.AbFormMain;
 import abook.form.table.editor.AbExpenseCostCellEditor;
 import abook.form.table.editor.AbExpenseDateCellEditor;
 import abook.form.table.editor.AbExpenseNameCellEditor;
+import abook.form.table.editor.AbExpenseNoteCellEditor;
 import abook.form.table.editor.AbExpenseTypeCellEditor;
 import abook.form.table.model.AbExpenseTableModel;
 import abook.form.table.renderer.AbExpenseCostCellRenderer;
 import abook.form.table.renderer.AbExpenseDateCellRenderer;
 import abook.form.table.renderer.AbExpenseNameCellRenderer;
+import abook.form.table.renderer.AbExpenseNoteCellRenderer;
 import abook.form.table.renderer.AbExpenseTypeCellRenderer;
 
 /**
@@ -65,15 +67,17 @@ public class AbExpenseTable extends JTable {
 		AbExpenseNameCellRenderer cellName = new AbExpenseNameCellRenderer();
 		AbExpenseTypeCellRenderer cellType = new AbExpenseTypeCellRenderer();
 		AbExpenseCostCellRenderer cellCost = new AbExpenseCostCellRenderer();
+		AbExpenseNoteCellRenderer cellNote = new AbExpenseNoteCellRenderer();
 		colDate.setCellRenderer(cellDate);
 		colName.setCellRenderer(cellName);
 		colType.setCellRenderer(cellType);
 		colCost.setCellRenderer(cellCost);
+		colNote.setCellRenderer(cellNote);
 		colDate.setCellEditor(new AbExpenseDateCellEditor());
 		colName.setCellEditor(new AbExpenseNameCellEditor());
 		colType.setCellEditor(new AbExpenseTypeCellEditor());
 		colCost.setCellEditor(new AbExpenseCostCellEditor());
-		removeColumn(colNote);
+		colNote.setCellEditor(new AbExpenseNoteCellEditor());
 
 		// テーブル列幅設定
 		TableColumnModel columns = getColumnModel();
@@ -81,6 +85,7 @@ public class AbExpenseTable extends JTable {
 		columns.getColumn(COL.EXPENSE.NAME).setPreferredWidth(134);
 		columns.getColumn(COL.EXPENSE.TYPE).setPreferredWidth(68);
 		columns.getColumn(COL.EXPENSE.COST).setPreferredWidth(80);
+		columns.getColumn(COL.EXPENSE.NOTE).setPreferredWidth(64);
 
 		// セル選択の設定
 		setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);

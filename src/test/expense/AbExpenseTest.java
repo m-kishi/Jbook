@@ -161,6 +161,9 @@ public class AbExpenseTest {
 			"特支",
 			"秘密入",
 			"秘密出",
+			"投資",
+			"利益",
+			"損失",
 			"invalid"
 	})
 	public void abExpenseWithTypeWrong(String type) {

@@ -238,15 +238,15 @@ public class AbTabGraphic extends JPanel {
 		layout.putConstraint(SpringLayout.NORTH, lblX1, 0, SpringLayout.SOUTH, canvas);
 		layout.putConstraint(SpringLayout.WEST, lblX1, 45, SpringLayout.WEST, canvas);
 		layout.putConstraint(SpringLayout.NORTH, lblX2, 0, SpringLayout.SOUTH, canvas);
-		layout.putConstraint(SpringLayout.WEST, lblX2, 36, SpringLayout.EAST, lblX1);
+		layout.putConstraint(SpringLayout.WEST, lblX2, 48, SpringLayout.EAST, lblX1);
 		layout.putConstraint(SpringLayout.NORTH, lblX3, 0, SpringLayout.SOUTH, canvas);
-		layout.putConstraint(SpringLayout.WEST, lblX3, 36, SpringLayout.EAST, lblX2);
+		layout.putConstraint(SpringLayout.WEST, lblX3, 48, SpringLayout.EAST, lblX2);
 		layout.putConstraint(SpringLayout.NORTH, lblX4, 0, SpringLayout.SOUTH, canvas);
-		layout.putConstraint(SpringLayout.WEST, lblX4, 36, SpringLayout.EAST, lblX3);
+		layout.putConstraint(SpringLayout.WEST, lblX4, 48, SpringLayout.EAST, lblX3);
 		layout.putConstraint(SpringLayout.NORTH, lblX5, 0, SpringLayout.SOUTH, canvas);
-		layout.putConstraint(SpringLayout.WEST, lblX5, 36, SpringLayout.EAST, lblX4);
+		layout.putConstraint(SpringLayout.WEST, lblX5, 48, SpringLayout.EAST, lblX4);
 		layout.putConstraint(SpringLayout.NORTH, lblX6, 0, SpringLayout.SOUTH, canvas);
-		layout.putConstraint(SpringLayout.WEST, lblX6, 36, SpringLayout.EAST, lblX5);
+		layout.putConstraint(SpringLayout.WEST, lblX6, 48, SpringLayout.EAST, lblX5);
 
 		panel.add(lblLineRed);
 		panel.add(lblLineFood);

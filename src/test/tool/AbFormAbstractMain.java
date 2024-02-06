@@ -308,6 +308,15 @@ public abstract class AbFormAbstractMain extends AbFormAbstract {
 	 */
 	protected JTable getPrivateTable(AbFormMain frame) {
 		return ComponentFindersKt.findChild(frame, JTable.class, "PrivateTable");
+	}
 
+	/**
+	 * 投資情報テーブルを取得
+	 * 
+	 * @param frame 親のフレーム
+	 * @return 投資情報テーブル
+	 */
+	protected JTable getFinanceTable(AbFormMain frame) {
+		return ComponentFindersKt.findChild(frame, JTable.class, "FinanceTable");
 	}
 }

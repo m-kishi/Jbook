@@ -1,14 +1,14 @@
 // ------------------------------------------------------------
 // © 2022 https://github.com/m-kishi
 // ------------------------------------------------------------
-package test.table;
+package test.table.model;
 
 import org.junit.jupiter.api.Disabled;
 
 /**
- * テスト:収支情報テーブル
+ * テスト:投資情報のテーブルモデル
  */
 @Disabled
-public class AbBalanceTable {
+public class AbFinanceTableModelTest {
 
 }

@@ -182,7 +182,7 @@ public class AbTabSummary extends JPanel {
 		TypeLabel lblTypeGood = new TypeLabel(this, "LblTypeGood", TYPE.GOOD);
 		TypeLabel lblTypeFrnd = new TypeLabel(this, "LblTypeFrnd", TYPE.FRND);
 		TypeLabel lblTypeTrfc = new TypeLabel(this, "LblTypeTrfc", TYPE.TRFC);
-		TypeLabel lblTypePaly = new TypeLabel(this, "LblTypePaly", TYPE.PLAY);
+		TypeLabel lblTypePlay = new TypeLabel(this, "LblTypePaly", TYPE.PLAY);
 		TypeLabel lblTypeHous = new TypeLabel(this, "LblTypeHous", TYPE.HOUS);
 		TypeLabel lblTypeEngy = new TypeLabel(this, "LblTypeEngy", TYPE.ENGY);
 		TypeLabel lblTypeCnct = new TypeLabel(this, "LblTypeCnct", TYPE.CNCT);
@@ -191,8 +191,8 @@ public class AbTabSummary extends JPanel {
 		TypeLabel lblTypeOthr = new TypeLabel(this, "LblTypeOthr", TYPE.OTHR);
 		TypeLabel lblTypeTtal = new TypeLabel(this, "LblTypeTtal", TYPE.TTAL);
 		TypeLabel lblTypeBlnc = new TypeLabel(this, "LblTypeBlnc", TYPE.BLNC);
-		LineLabel lblLine1 = new LineLabel("----------------------------------------");
-		LineLabel lblLine2 = new LineLabel("------------------");
+		LineLabel lblLine1 = new LineLabel("--------------------------------------------");
+		LineLabel lblLine2 = new LineLabel("--------------------");
 		lblCostFood = new CostLabel(this, "LblCostFood", TYPE.FOOD, 0);
 		lblCostOtfd = new CostLabel(this, "LblCostOtfd", TYPE.OTFD, 0);
 		lblCostGood = new CostLabel(this, "LblCostGood", TYPE.GOOD, 0);
@@ -210,68 +210,68 @@ public class AbTabSummary extends JPanel {
 
 		// レイアウトの配置設定
 		layout.putConstraint(SpringLayout.NORTH, lblTypeFood, 11, SpringLayout.NORTH, panel);
-		layout.putConstraint(SpringLayout.WEST, lblTypeFood, 35, SpringLayout.WEST, panel);
-		layout.putConstraint(SpringLayout.EAST, lblTypeFood, 85, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.WEST, lblTypeFood, 50, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.EAST, lblTypeFood, 100, SpringLayout.WEST, panel);
 
 		layout.putConstraint(SpringLayout.NORTH, lblTypeOtfd, 8, SpringLayout.SOUTH, lblTypeFood);
-		layout.putConstraint(SpringLayout.WEST, lblTypeOtfd, 35, SpringLayout.WEST, panel);
-		layout.putConstraint(SpringLayout.EAST, lblTypeOtfd, 85, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.WEST, lblTypeOtfd, 50, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.EAST, lblTypeOtfd, 100, SpringLayout.WEST, panel);
 
 		layout.putConstraint(SpringLayout.NORTH, lblLine1, 5, SpringLayout.SOUTH, lblTypeOtfd);
-		layout.putConstraint(SpringLayout.WEST, lblLine1, 25, SpringLayout.WEST, panel);
-		layout.putConstraint(SpringLayout.EAST, lblLine1, -25, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.WEST, lblLine1, 40, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.EAST, lblLine1, -40, SpringLayout.EAST, panel);
 
 		layout.putConstraint(SpringLayout.NORTH, lblTypeGood, 5, SpringLayout.SOUTH, lblLine1);
-		layout.putConstraint(SpringLayout.WEST, lblTypeGood, 35, SpringLayout.WEST, panel);
-		layout.putConstraint(SpringLayout.EAST, lblTypeGood, 85, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.WEST, lblTypeGood, 50, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.EAST, lblTypeGood, 100, SpringLayout.WEST, panel);
 
 		layout.putConstraint(SpringLayout.NORTH, lblTypeFrnd, 8, SpringLayout.SOUTH, lblTypeGood);
-		layout.putConstraint(SpringLayout.WEST, lblTypeFrnd, 35, SpringLayout.WEST, panel);
-		layout.putConstraint(SpringLayout.EAST, lblTypeFrnd, 85, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.WEST, lblTypeFrnd, 50, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.EAST, lblTypeFrnd, 100, SpringLayout.WEST, panel);
 
 		layout.putConstraint(SpringLayout.NORTH, lblTypeTrfc, 8, SpringLayout.SOUTH, lblTypeFrnd);
-		layout.putConstraint(SpringLayout.WEST, lblTypeTrfc, 35, SpringLayout.WEST, panel);
-		layout.putConstraint(SpringLayout.EAST, lblTypeTrfc, 85, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.WEST, lblTypeTrfc, 50, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.EAST, lblTypeTrfc, 100, SpringLayout.WEST, panel);
 
-		layout.putConstraint(SpringLayout.NORTH, lblTypePaly, 8, SpringLayout.SOUTH, lblTypeTrfc);
-		layout.putConstraint(SpringLayout.WEST, lblTypePaly, 35, SpringLayout.WEST, panel);
-		layout.putConstraint(SpringLayout.EAST, lblTypePaly, 85, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.NORTH, lblTypePlay, 8, SpringLayout.SOUTH, lblTypeTrfc);
+		layout.putConstraint(SpringLayout.WEST, lblTypePlay, 50, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.EAST, lblTypePlay, 100, SpringLayout.WEST, panel);
 
 		layout.putConstraint(SpringLayout.NORTH, lblTypeHous, 11, SpringLayout.NORTH, panel);
-		layout.putConstraint(SpringLayout.WEST, lblTypeHous, -70, SpringLayout.WEST, lblCostHous);
-		layout.putConstraint(SpringLayout.EAST, lblTypeHous, -20, SpringLayout.WEST, lblCostHous);
+		layout.putConstraint(SpringLayout.WEST, lblTypeHous, -85, SpringLayout.WEST, lblCostHous);
+		layout.putConstraint(SpringLayout.EAST, lblTypeHous, -35, SpringLayout.WEST, lblCostHous);
 
 		layout.putConstraint(SpringLayout.NORTH, lblTypeEngy, 8, SpringLayout.SOUTH, lblTypeHous);
-		layout.putConstraint(SpringLayout.WEST, lblTypeEngy, -70, SpringLayout.WEST, lblCostEngy);
-		layout.putConstraint(SpringLayout.EAST, lblTypeEngy, -20, SpringLayout.WEST, lblCostEngy);
+		layout.putConstraint(SpringLayout.WEST, lblTypeEngy, -85, SpringLayout.WEST, lblCostEngy);
+		layout.putConstraint(SpringLayout.EAST, lblTypeEngy, -35, SpringLayout.WEST, lblCostEngy);
 
 		layout.putConstraint(SpringLayout.NORTH, lblTypeCnct, 5, SpringLayout.SOUTH, lblLine1);
-		layout.putConstraint(SpringLayout.WEST, lblTypeCnct, -70, SpringLayout.WEST, lblCostCnct);
-		layout.putConstraint(SpringLayout.EAST, lblTypeCnct, -20, SpringLayout.WEST, lblCostCnct);
+		layout.putConstraint(SpringLayout.WEST, lblTypeCnct, -85, SpringLayout.WEST, lblCostCnct);
+		layout.putConstraint(SpringLayout.EAST, lblTypeCnct, -35, SpringLayout.WEST, lblCostCnct);
 
 		layout.putConstraint(SpringLayout.NORTH, lblTypeMedi, 8, SpringLayout.SOUTH, lblTypeCnct);
-		layout.putConstraint(SpringLayout.WEST, lblTypeMedi, -70, SpringLayout.WEST, lblCostMedi);
-		layout.putConstraint(SpringLayout.EAST, lblTypeMedi, -20, SpringLayout.WEST, lblCostMedi);
+		layout.putConstraint(SpringLayout.WEST, lblTypeMedi, -85, SpringLayout.WEST, lblCostMedi);
+		layout.putConstraint(SpringLayout.EAST, lblTypeMedi, -35, SpringLayout.WEST, lblCostMedi);
 
 		layout.putConstraint(SpringLayout.NORTH, lblTypeInsu, 8, SpringLayout.SOUTH, lblTypeMedi);
-		layout.putConstraint(SpringLayout.WEST, lblTypeInsu, -70, SpringLayout.WEST, lblCostInsu);
-		layout.putConstraint(SpringLayout.EAST, lblTypeInsu, -20, SpringLayout.WEST, lblCostInsu);
+		layout.putConstraint(SpringLayout.WEST, lblTypeInsu, -85, SpringLayout.WEST, lblCostInsu);
+		layout.putConstraint(SpringLayout.EAST, lblTypeInsu, -35, SpringLayout.WEST, lblCostInsu);
 
 		layout.putConstraint(SpringLayout.NORTH, lblTypeOthr, 8, SpringLayout.SOUTH, lblTypeInsu);
-		layout.putConstraint(SpringLayout.WEST, lblTypeOthr, -70, SpringLayout.WEST, lblCostOthr);
-		layout.putConstraint(SpringLayout.EAST, lblTypeOthr, -20, SpringLayout.WEST, lblCostOthr);
+		layout.putConstraint(SpringLayout.WEST, lblTypeOthr, -85, SpringLayout.WEST, lblCostOthr);
+		layout.putConstraint(SpringLayout.EAST, lblTypeOthr, -35, SpringLayout.WEST, lblCostOthr);
 
 		layout.putConstraint(SpringLayout.NORTH, lblLine2, 5, SpringLayout.SOUTH, lblTypeOthr);
-		layout.putConstraint(SpringLayout.WEST, lblLine2, -195, SpringLayout.EAST, panel);
-		layout.putConstraint(SpringLayout.EAST, lblLine2, -25, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.WEST, lblLine2, -220, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.EAST, lblLine2, -40, SpringLayout.EAST, panel);
 
 		layout.putConstraint(SpringLayout.NORTH, lblTypeTtal, 5, SpringLayout.SOUTH, lblLine2);
-		layout.putConstraint(SpringLayout.WEST, lblTypeTtal, -70, SpringLayout.WEST, lblCostTtal);
-		layout.putConstraint(SpringLayout.EAST, lblTypeTtal, -20, SpringLayout.WEST, lblCostTtal);
+		layout.putConstraint(SpringLayout.WEST, lblTypeTtal, -85, SpringLayout.WEST, lblCostTtal);
+		layout.putConstraint(SpringLayout.EAST, lblTypeTtal, -35, SpringLayout.WEST, lblCostTtal);
 
 		layout.putConstraint(SpringLayout.NORTH, lblTypeBlnc, 8, SpringLayout.SOUTH, lblTypeTtal);
-		layout.putConstraint(SpringLayout.WEST, lblTypeBlnc, -70, SpringLayout.WEST, lblCostBlnc);
-		layout.putConstraint(SpringLayout.EAST, lblTypeBlnc, -20, SpringLayout.WEST, lblCostBlnc);
+		layout.putConstraint(SpringLayout.WEST, lblTypeBlnc, -85, SpringLayout.WEST, lblCostBlnc);
+		layout.putConstraint(SpringLayout.EAST, lblTypeBlnc, -35, SpringLayout.WEST, lblCostBlnc);
 
 		layout.putConstraint(SpringLayout.NORTH, lblCostFood, 11, SpringLayout.NORTH, panel);
 		layout.putConstraint(SpringLayout.WEST, lblCostFood, 20, SpringLayout.EAST, lblTypeFood);
@@ -294,47 +294,47 @@ public class AbTabSummary extends JPanel {
 		layout.putConstraint(SpringLayout.EAST, lblCostTrfc, 100, SpringLayout.EAST, lblTypeTrfc);
 
 		layout.putConstraint(SpringLayout.NORTH, lblCostPaly, 8, SpringLayout.SOUTH, lblCostTrfc);
-		layout.putConstraint(SpringLayout.WEST, lblCostPaly, 20, SpringLayout.EAST, lblTypePaly);
-		layout.putConstraint(SpringLayout.EAST, lblCostPaly, 100, SpringLayout.EAST, lblTypePaly);
+		layout.putConstraint(SpringLayout.WEST, lblCostPaly, 20, SpringLayout.EAST, lblTypePlay);
+		layout.putConstraint(SpringLayout.EAST, lblCostPaly, 100, SpringLayout.EAST, lblTypePlay);
 
 		layout.putConstraint(SpringLayout.NORTH, lblCostHous, 11, SpringLayout.NORTH, panel);
-		layout.putConstraint(SpringLayout.WEST, lblCostHous, -115, SpringLayout.EAST, panel);
-		layout.putConstraint(SpringLayout.EAST, lblCostHous, -35, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.WEST, lblCostHous, -130, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.EAST, lblCostHous, -50, SpringLayout.EAST, panel);
 
 		layout.putConstraint(SpringLayout.NORTH, lblCostEngy, 8, SpringLayout.SOUTH, lblCostHous);
-		layout.putConstraint(SpringLayout.WEST, lblCostEngy, -115, SpringLayout.EAST, panel);
-		layout.putConstraint(SpringLayout.EAST, lblCostEngy, -35, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.WEST, lblCostEngy, -130, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.EAST, lblCostEngy, -50, SpringLayout.EAST, panel);
 
 		layout.putConstraint(SpringLayout.NORTH, lblCostCnct, 8, SpringLayout.SOUTH, lblLine1);
-		layout.putConstraint(SpringLayout.WEST, lblCostCnct, -115, SpringLayout.EAST, panel);
-		layout.putConstraint(SpringLayout.EAST, lblCostCnct, -35, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.WEST, lblCostCnct, -130, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.EAST, lblCostCnct, -50, SpringLayout.EAST, panel);
 
 		layout.putConstraint(SpringLayout.NORTH, lblCostMedi, 8, SpringLayout.SOUTH, lblCostCnct);
-		layout.putConstraint(SpringLayout.WEST, lblCostMedi, -115, SpringLayout.EAST, panel);
-		layout.putConstraint(SpringLayout.EAST, lblCostMedi, -35, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.WEST, lblCostMedi, -130, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.EAST, lblCostMedi, -50, SpringLayout.EAST, panel);
 
 		layout.putConstraint(SpringLayout.NORTH, lblCostInsu, 8, SpringLayout.SOUTH, lblCostMedi);
-		layout.putConstraint(SpringLayout.WEST, lblCostInsu, -115, SpringLayout.EAST, panel);
-		layout.putConstraint(SpringLayout.EAST, lblCostInsu, -35, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.WEST, lblCostInsu, -130, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.EAST, lblCostInsu, -50, SpringLayout.EAST, panel);
 
 		layout.putConstraint(SpringLayout.NORTH, lblCostOthr, 8, SpringLayout.SOUTH, lblCostInsu);
-		layout.putConstraint(SpringLayout.WEST, lblCostOthr, -115, SpringLayout.EAST, panel);
-		layout.putConstraint(SpringLayout.EAST, lblCostOthr, -35, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.WEST, lblCostOthr, -130, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.EAST, lblCostOthr, -50, SpringLayout.EAST, panel);
 
 		layout.putConstraint(SpringLayout.NORTH, lblCostTtal, 8, SpringLayout.SOUTH, lblLine2);
-		layout.putConstraint(SpringLayout.WEST, lblCostTtal, -115, SpringLayout.EAST, panel);
-		layout.putConstraint(SpringLayout.EAST, lblCostTtal, -35, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.WEST, lblCostTtal, -130, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.EAST, lblCostTtal, -50, SpringLayout.EAST, panel);
 
 		layout.putConstraint(SpringLayout.NORTH, lblCostBlnc, 8, SpringLayout.SOUTH, lblCostTtal);
-		layout.putConstraint(SpringLayout.WEST, lblCostBlnc, -115, SpringLayout.EAST, panel);
-		layout.putConstraint(SpringLayout.EAST, lblCostBlnc, -35, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.WEST, lblCostBlnc, -130, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.EAST, lblCostBlnc, -50, SpringLayout.EAST, panel);
 
 		panel.add(lblTypeFood);
 		panel.add(lblTypeOtfd);
 		panel.add(lblTypeGood);
 		panel.add(lblTypeFrnd);
 		panel.add(lblTypeTrfc);
-		panel.add(lblTypePaly);
+		panel.add(lblTypePlay);
 		panel.add(lblTypeHous);
 		panel.add(lblTypeEngy);
 		panel.add(lblTypeCnct);
@@ -469,7 +469,7 @@ public class AbTabSummary extends JPanel {
 		public LineLabel(String line) {
 			super(line);
 			setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, 14));
-			setHorizontalAlignment(JLabel.CENTER);
+			setHorizontalAlignment(JLabel.RIGHT);
 		}
 	}
 

@@ -9,6 +9,6 @@ import org.junit.jupiter.api.Disabled;
  * テスト:支出情報テーブル
  */
 @Disabled
-public class AbExpenseTable {
+public class AbExpenseTableTest {
 
 }

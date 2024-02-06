@@ -78,7 +78,7 @@ public class AbFormMainTest extends AbFormAbstractMain {
 		assertNotNull(tab);
 
 		// タブの数を確認
-		assertEquals(5, tab.getTabCount());
+		assertEquals(6, tab.getTabCount());
 
 		// 初期タブを確認
 		assertEquals(0, tab.getSelectedIndex());
@@ -89,6 +89,7 @@ public class AbFormMainTest extends AbFormAbstractMain {
 		assertEquals("推移", tab.getTitleAt(2));
 		assertEquals("収支", tab.getTitleAt(3));
 		assertEquals("秘密", tab.getTitleAt(4));
+		assertEquals("投資", tab.getTitleAt(5));
 	}
 
 	/**

@@ -70,7 +70,10 @@ public class AbSummaryTest {
 						new AbExpense("2023-10-01", "名称Ｏ", TYPE.PRVI, "7000", ""),
 						new AbExpense("2023-10-01", "名称Ｏ", TYPE.PRVI, "7000", ""),
 						new AbExpense("2023-10-01", "名称Ｐ", TYPE.PRVO, "3000", ""),
-						new AbExpense("2023-10-01", "名称Ｐ", TYPE.PRVO, "3000", "")
+						new AbExpense("2023-10-01", "名称Ｐ", TYPE.PRVO, "3000", ""),
+						new AbExpense("2023-10-01", "名称Ｑ", TYPE.FNCE, "1200000", ""),
+						new AbExpense("2023-10-01", "名称Ｒ", TYPE.GAIN, "5000000", ""),
+						new AbExpense("2023-10-01", "名称Ｓ", TYPE.LOSS, "3000000", "")
 				)
 		);
 
@@ -179,6 +182,9 @@ public class AbSummaryTest {
 			"特出　,   4000",
 			"秘密入,  14000",
 			"秘密出,   6000",
+			"投資　, 1200000",
+			"利益　, 5000000",
+			"損失　, 3000000",
 	})
 	public void getCostByType(String type, int expected) {
 		assertEquals(expected, summary.getCostByType(type.strip()));

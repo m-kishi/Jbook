@@ -67,6 +67,8 @@ public class AbConstant {
 			public static final int EXPENSE = 2;
 			/** 収支 */
 			public static final int BALANCE = 3;
+			/** 投資 */
+			public static final int FINANCE = 4;
 		}
 
 		/** 秘密収支情報 */
@@ -81,6 +83,20 @@ public class AbConstant {
 			public static final int NOTE = 4;
 			/** 収支 */
 			public static final int BALANCE = 3;
+		}
+
+		/** 投資情報 */
+		public static class FINANCE {
+			/** 日付 */
+			public static final int DATE = 0;
+			/** 名称 */
+			public static final int NAME = 1;
+			/** 金額 */
+			public static final int COST = 2;
+			/** 備考 */
+			public static final int NOTE = 4;
+			/** 累計 */
+			public static final int TOTAL = 3;
 		}
 	}
 
@@ -151,13 +167,20 @@ public class AbConstant {
 		public static final String PRVI = "秘密入";
 		/** 秘密出 */
 		public static final String PRVO = "秘密出";
+		/** 投資 */
+		public static final String FNCE = "投資";
+		/** 利益 */
+		public static final String GAIN = "利益";
+		/** 損失 */
+		public static final String LOSS = "損失";
 
 		/** 支出情報として指定可能な種別 */
 		public static final List<String> EXPENSES = new ArrayList<String>(
 				Arrays.asList(
 						FOOD, OTFD, GOOD, FRND, TRFC, PLAY,
 						HOUS, ENGY, CNCT, MEDI, INSU, OTHR,
-						EARN, BNUS, SPCL, PRVI, PRVO
+						EARN, BNUS, SPCL, PRVI, PRVO,
+						FNCE, GAIN, LOSS
 				)
 		);
 
@@ -197,7 +220,7 @@ public class AbConstant {
 	 */
 	public static class GRAPH {
 		/** 描画領域幅 */
-		public static final int WIDTH = 345;
+		public static final int WIDTH = 409;
 		/** 描画領域高さ */
 		public static final int HEIGHT = 214;
 		/** 表示月数 */

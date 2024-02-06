@@ -53,9 +53,9 @@ import abook.common.AbUtility.UTL;
 import abook.expense.AbExpense;
 import abook.form.AbFormMain;
 import junitx.framework.FileAssert;
-import test.tool.AbTestTool;
 import test.tool.AbFormAbstractMain;
 import test.tool.AbTestCleanupExtension;
+import test.tool.AbTestTool;
 
 /**
  * テスト:支出タブ
@@ -165,18 +165,18 @@ public class AbTabExpenseTest extends AbFormAbstractMain {
 		List<AbExpense> dbFileEntryExpected = new ArrayList<AbExpense>(
 				Arrays.asList(
 						new AbExpense("2023-10-01", "name01", "外食費", "100", "note1"),
-						new AbExpense("2023-10-02", "name02", "交通費", "200", ""),
-						new AbExpense("2023-10-03", "name03", "交際費", "300", ""),
-						new AbExpense("2023-10-04", "name04", "遊行費", "400", ""),
-						new AbExpense("2023-10-05", "name05", "通信費", "500", "")
+						new AbExpense("2023-10-02", "name02", "交通費", "200", "note02"),
+						new AbExpense("2023-10-03", "name03", "交際費", "300", "note03"),
+						new AbExpense("2023-10-04", "name04", "遊行費", "400", "note04"),
+						new AbExpense("2023-10-05", "name05", "通信費", "500", "note05")
 				)
 		);
 
 		List<AbExpense> dbFileEntryExpected2 = new ArrayList<AbExpense>(
 				Arrays.asList(
-						new AbExpense("2023-10-01", "name01", "食費", "100", ""),
-						new AbExpense("2023-10-02", "name02", "食費", "200", ""),
-						new AbExpense("2023-10-06", "name06", "食費", "600", "")
+						new AbExpense("2023-10-01", "name01", "食費", "100", "備考"),
+						new AbExpense("2023-10-02", "name02", "食費", "200", "備考"),
+						new AbExpense("2023-10-06", "name06", "食費", "600", "備考")
 				)
 		);
 
@@ -234,6 +234,7 @@ public class AbTabExpenseTest extends AbFormAbstractMain {
 			assertEquals("名称", table.getColumnName(1));
 			assertEquals("種別", table.getColumnName(2));
 			assertEquals("金額", table.getColumnName(3));
+			assertEquals("備考", table.getColumnName(4));
 		}
 
 		/**
@@ -298,10 +299,12 @@ public class AbTabExpenseTest extends AbFormAbstractMain {
 				String name = (String) table.getValueAt(i, 1);
 				String type = (String) table.getValueAt(i, 2);
 				int cost = (int) table.getValueAt(i, 3);
+				String note = (String) table.getValueAt(i, 4);
 				assertEquals(dbFileExist.get(i).getDate(), date);
 				assertEquals(dbFileExist.get(i).getName(), name);
 				assertEquals(dbFileExist.get(i).getType(), type);
 				assertEquals(dbFileExist.get(i).getCost(), cost);
+				assertEquals(dbFileExist.get(i).getNote(), note);
 			}
 		}
 
@@ -362,7 +365,7 @@ public class AbTabExpenseTest extends AbFormAbstractMain {
 			for (int row = 0; row <= 2; row++) {
 				if (row == 1)
 					continue;
-				for (int col = COL.EXPENSE.DATE; col <= COL.EXPENSE.COST; col++) {
+				for (int col = COL.EXPENSE.DATE; col <= COL.EXPENSE.NOTE; col++) {
 					Component component = getTableCellRendererComponent(table, row, col);
 					assertEquals(COLOR.NOTE_BACKGROUND, component.getBackground());
 				}
@@ -394,7 +397,7 @@ public class AbTabExpenseTest extends AbFormAbstractMain {
 			for (int row = 1; row <= 3; row++) {
 				if (row == 2)
 					continue;
-				for (int col = COL.EXPENSE.DATE; col <= COL.EXPENSE.COST; col++) {
+				for (int col = COL.EXPENSE.DATE; col <= COL.EXPENSE.NOTE; col++) {
 					Component component = getTableCellRendererComponent(table, row, col);
 					assertEquals(expected, component.getBackground());
 				}
@@ -1551,10 +1554,12 @@ public class AbTabExpenseTest extends AbFormAbstractMain {
 				String name = String.format("name%02d", i);
 				String type = types[i - 2];
 				int cost = 100 * i;
+				String note = String.format("note%02d", i);
 				model.setValueAt(date, i - 1, COL.EXPENSE.DATE);
 				model.setValueAt(name, i - 1, COL.EXPENSE.NAME);
 				model.setValueAt(type, i - 1, COL.EXPENSE.TYPE);
 				model.setValueAt(cost, i - 1, COL.EXPENSE.COST);
+				model.setValueAt(note, i - 1, COL.EXPENSE.NOTE);
 			}
 
 			// 登録ボタンをクリック
@@ -1647,6 +1652,7 @@ public class AbTabExpenseTest extends AbFormAbstractMain {
 				String name = String.format("name%02d", i);
 				String type = "食費";
 				Integer cost = 100 * i;
+				String note = "備考";
 
 				// 日付は画面上から空欄にできないため，それ以外の列で確認
 				switch (i) {
@@ -1660,6 +1666,7 @@ public class AbTabExpenseTest extends AbFormAbstractMain {
 				model.setValueAt(name, i - 1, COL.EXPENSE.NAME);
 				model.setValueAt(type, i - 1, COL.EXPENSE.TYPE);
 				model.setValueAt(cost, i - 1, COL.EXPENSE.COST);
+				model.setValueAt(note, i - 1, COL.EXPENSE.NOTE);
 			}
 
 			// 登録ボタンをクリック

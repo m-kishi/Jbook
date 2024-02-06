@@ -255,6 +255,7 @@ public class AbSubformSearchTest extends AbFormAbstract {
 			assertEquals("名称", table.getColumnName(1));
 			assertEquals("種別", table.getColumnName(2));
 			assertEquals("金額", table.getColumnName(3));
+			assertEquals("備考", table.getColumnName(4));
 		}
 
 		/**
@@ -309,6 +310,7 @@ public class AbSubformSearchTest extends AbFormAbstract {
 				assertEquals(expenses.get(i).getName(), table.getValueAt(i, COL.EXPENSE.NAME));
 				assertEquals(expenses.get(i).getType(), table.getValueAt(i, COL.EXPENSE.TYPE));
 				assertEquals(expenses.get(i).getCost(), table.getValueAt(i, COL.EXPENSE.COST));
+				assertEquals(expenses.get(i).getNote(), table.getValueAt(i, COL.EXPENSE.NOTE));
 			}
 		}
 
@@ -370,7 +372,7 @@ public class AbSubformSearchTest extends AbFormAbstract {
 
 			List<AbExpense> expected = AbTestTool.getExpenses(new ArrayList<String[]>() {
 				{
-					add(new String[] { "2023-10-03", "おにぎり", TYPE.FOOD, "100" });
+					add(new String[] { "2023-10-03", "おにぎり", TYPE.FOOD, "100", "note1" });
 					add(new String[] { "2023-10-04", "おにぎり", TYPE.FOOD, "200" });
 					add(new String[] { "2023-10-06", "おにぎり", TYPE.OTFD, "101" });
 					add(new String[] { "2023-10-07", "おにぎり", TYPE.OTFD, "202" });
@@ -386,6 +388,7 @@ public class AbSubformSearchTest extends AbFormAbstract {
 				assertEquals(expected.get(i).getName(), table.getValueAt(i, COL.EXPENSE.NAME));
 				assertEquals(expected.get(i).getType(), table.getValueAt(i, COL.EXPENSE.TYPE));
 				assertEquals(expected.get(i).getCost(), table.getValueAt(i, COL.EXPENSE.COST));
+				assertEquals(expected.get(i).getNote(), table.getValueAt(i, COL.EXPENSE.NOTE));
 			}
 		}
 
@@ -423,6 +426,7 @@ public class AbSubformSearchTest extends AbFormAbstract {
 				assertEquals(expenses.get(i).getName(), table.getValueAt(i, COL.EXPENSE.NAME));
 				assertEquals(expenses.get(i).getType(), table.getValueAt(i, COL.EXPENSE.TYPE));
 				assertEquals(expenses.get(i).getCost(), table.getValueAt(i, COL.EXPENSE.COST));
+				assertEquals(expenses.get(i).getNote(), table.getValueAt(i, COL.EXPENSE.NOTE));
 			}
 		}
 
@@ -469,6 +473,7 @@ public class AbSubformSearchTest extends AbFormAbstract {
 				assertEquals(expected.get(i).getName(), table.getValueAt(i, COL.EXPENSE.NAME));
 				assertEquals(expected.get(i).getType(), table.getValueAt(i, COL.EXPENSE.TYPE));
 				assertEquals(expected.get(i).getCost(), table.getValueAt(i, COL.EXPENSE.COST));
+				assertEquals(expected.get(i).getNote(), table.getValueAt(i, COL.EXPENSE.NOTE));
 			}
 		}
 
@@ -515,6 +520,7 @@ public class AbSubformSearchTest extends AbFormAbstract {
 				assertEquals(expected.get(i).getName(), table.getValueAt(i, COL.EXPENSE.NAME));
 				assertEquals(expected.get(i).getType(), table.getValueAt(i, COL.EXPENSE.TYPE));
 				assertEquals(expected.get(i).getCost(), table.getValueAt(i, COL.EXPENSE.COST));
+				assertEquals(expected.get(i).getNote(), table.getValueAt(i, COL.EXPENSE.NOTE));
 			}
 		}
 
@@ -561,6 +567,7 @@ public class AbSubformSearchTest extends AbFormAbstract {
 				assertEquals(expected.get(i).getName(), table.getValueAt(i, COL.EXPENSE.NAME));
 				assertEquals(expected.get(i).getType(), table.getValueAt(i, COL.EXPENSE.TYPE));
 				assertEquals(expected.get(i).getCost(), table.getValueAt(i, COL.EXPENSE.COST));
+				assertEquals(expected.get(i).getNote(), table.getValueAt(i, COL.EXPENSE.NOTE));
 			}
 		}
 
@@ -646,6 +653,7 @@ public class AbSubformSearchTest extends AbFormAbstract {
 				assertEquals(expected.get(i).getName(), table.getValueAt(i, COL.EXPENSE.NAME));
 				assertEquals(expected.get(i).getType(), table.getValueAt(i, COL.EXPENSE.TYPE));
 				assertEquals(expected.get(i).getCost(), table.getValueAt(i, COL.EXPENSE.COST));
+				assertEquals(expected.get(i).getNote(), table.getValueAt(i, COL.EXPENSE.NOTE));
 			}
 		}
 
@@ -699,6 +707,7 @@ public class AbSubformSearchTest extends AbFormAbstract {
 				assertEquals(expected.get(i).getName(), table.getValueAt(i, COL.EXPENSE.NAME));
 				assertEquals(expected.get(i).getType(), table.getValueAt(i, COL.EXPENSE.TYPE));
 				assertEquals(expected.get(i).getCost(), table.getValueAt(i, COL.EXPENSE.COST));
+				assertEquals(expected.get(i).getNote(), table.getValueAt(i, COL.EXPENSE.NOTE));
 			}
 		}
 
@@ -745,7 +754,7 @@ public class AbSubformSearchTest extends AbFormAbstract {
 
 			// 背景色の確認
 			for (int row = 0; row < table.getRowCount(); row++) {
-				for (int col = COL.EXPENSE.DATE; col <= COL.EXPENSE.COST; col++) {
+				for (int col = COL.EXPENSE.DATE; col <= COL.EXPENSE.NOTE; col++) {
 					Component component = getTableCellRendererComponent(table, row, col);
 					if (row == 2) {
 						assertEquals(COLOR.NOTE_BACKGROUND, component.getBackground());

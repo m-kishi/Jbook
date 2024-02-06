@@ -62,7 +62,7 @@ public class AbSubformSearch extends JDialog {
 		// フォーム
 		setTitle("支出検索");
 		setModal(true);
-		setSize(414, 346);
+		setSize(478, 346);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
@@ -78,7 +78,7 @@ public class AbSubformSearch extends JDialog {
 		cmbName = new JComboBox<String>(names.toArray(new String[] {}));
 		cmbName.setName("CmbName");
 		cmbName.setEditable(true);
-		cmbName.setPreferredSize(new Dimension(253, (int) cmbName.getPreferredSize().getHeight()));
+		cmbName.setPreferredSize(new Dimension(317, (int) cmbName.getPreferredSize().getHeight()));
 		cmbName.setMaximumRowCount(17);
 		conditionArea.add(cmbName);
 

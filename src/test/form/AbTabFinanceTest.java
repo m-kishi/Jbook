@@ -38,32 +38,33 @@ import test.tool.AbTestCleanupExtension;
 import test.tool.AbTestTool;
 
 /**
- * テスト:秘密タブ
+ * テスト:投資タブ
  */
 @ExtendWith(AbTestCleanupExtension.class)
-public class AbTabPrivateTest extends AbFormAbstractMain {
+public class AbTabFinanceTest extends AbFormAbstractMain {
 
 	/** DBファイル */
-	private static final String DB_FILE_EXIST = "AbTabPrivateTestExist.db";
+	private static final String DB_FILE_EXIST = "AbTabFinanceTestExist.db";
 
 	/** DBファイル */
-	private static final String DB_FILE_EMPTY = "AbTabPrivateTestEmpty.db";
+	private static final String DB_FILE_EMPTY = "AbTabFinanceTestEmpty.db";
 
 	@BeforeAll
 	public static void testFixtureSetup() throws AbException, IOException {
 
 		List<AbExpense> dbFileExist = new ArrayList<AbExpense>(
 				Arrays.asList(
-						new AbExpense("2023-04-01", "private01", TYPE.PRVI, "10000", ""),
-						new AbExpense("2023-05-01", "private02", TYPE.PRVI, "20000", ""),
-						new AbExpense("2024-06-01", "private03", TYPE.PRVI, "30000", ""),
-						new AbExpense("2024-06-30", "dummy    ", TYPE.TRFC, "35000", ""),
-						new AbExpense("2024-07-01", "private04", TYPE.PRVO, "40000", ""),
-						new AbExpense("2025-08-01", "private05", TYPE.PRVI, "50000", ""),
-						new AbExpense("2025-09-01", "private06", TYPE.PRVI, "60000", ""),
-						new AbExpense("2025-09-30", "dummy    ", TYPE.SPCL, "65000", ""),
-						new AbExpense("2026-10-01", "private07", TYPE.PRVI, "70000", ""),
-						new AbExpense("2026-11-01", "private08", TYPE.PRVO, "80000", "note08")
+						new AbExpense("2024-01-20", "名称1", TYPE.FNCE, "10000", ""),
+						new AbExpense("2024-02-21", "名称2", TYPE.FNCE, "20000", ""),
+						new AbExpense("2024-03-22", "名称3", TYPE.FNCE, "30000", ""),
+						new AbExpense("2024-04-23", "名称4", TYPE.FNCE, "40000", ""),
+						new AbExpense("2024-04-30", "　　X", TYPE.FOOD, "99999", ""),
+						new AbExpense("2024-05-24", "名称5", TYPE.FNCE, "50000", ""),
+						new AbExpense("2024-06-25", "名称6", TYPE.FNCE, "60000", ""),
+						new AbExpense("2024-07-26", "名称7", TYPE.FNCE, "70000", ""),
+						new AbExpense("2024-08-27", "名称8", TYPE.FNCE, "80000", "noteXX"),
+						new AbExpense("2024-09-28", "名称9", TYPE.FNCE, "90000", ""),
+						new AbExpense("2024-10-29", "名称0", TYPE.FNCE, "11000", "")
 				)
 		);
 
@@ -91,17 +92,17 @@ public class AbTabPrivateTest extends AbFormAbstractMain {
 		AbFormMain frame = showFormMain(DB_FILE_EMPTY);
 
 		// タブを切り替え
-		changeTab(frame, 4);
+		changeTab(frame, 5);
 
-		// 秘密収支情報テーブルを取得
-		JTable table = getPrivateTable(frame);
+		// 投資情報テーブルを取得
+		JTable table = getFinanceTable(frame);
 		assertNotNull(table);
 
-		// 収支情報テーブルのカラムを確認
+		// 投資情報テーブルのカラムを確認
 		assertEquals("日付", table.getColumnName(0));
 		assertEquals("名称", table.getColumnName(1));
 		assertEquals("金額", table.getColumnName(2));
-		assertEquals("収支", table.getColumnName(3));
+		assertEquals("累計", table.getColumnName(3));
 		assertEquals("備考", table.getColumnName(4));
 	}
 
@@ -118,10 +119,10 @@ public class AbTabPrivateTest extends AbFormAbstractMain {
 		AbFormMain frame = showFormMain(DB_FILE_EMPTY);
 
 		// タブを切り替え
-		changeTab(frame, 4);
+		changeTab(frame, 5);
 
-		// 秘密収支情報テーブルを取得
-		JTable table = getPrivateTable(frame);
+		// 投資情報テーブルを取得
+		JTable table = getFinanceTable(frame);
 		assertNotNull(table);
 
 		// 件数を確認
@@ -141,14 +142,14 @@ public class AbTabPrivateTest extends AbFormAbstractMain {
 		AbFormMain frame = showFormMain(DB_FILE_EXIST);
 
 		// タブを切り替え
-		changeTab(frame, 4);
+		changeTab(frame, 5);
 
-		// 秘密収支情報テーブルを取得
-		JTable table = getPrivateTable(frame);
+		// 投資情報テーブルを取得
+		JTable table = getFinanceTable(frame);
 		assertNotNull(table);
 
 		// 件数を確認
-		assertEquals(8, table.getRowCount());
+		assertEquals(10, table.getRowCount());
 	}
 
 	/**
@@ -163,21 +164,23 @@ public class AbTabPrivateTest extends AbFormAbstractMain {
 		AbFormMain frame = showFormMain(DB_FILE_EXIST);
 
 		// タブを切り替え
-		changeTab(frame, 4);
+		changeTab(frame, 5);
 
-		// 秘密収支情報テーブルを取得
-		JTable table = getPrivateTable(frame);
+		// 投資情報テーブルを取得
+		JTable table = getFinanceTable(frame);
 		assertNotNull(table);
 
 		// 日付を確認
-		assertEquals(UTL.toLocalDate("2023-04-01"), table.getValueAt(0, COL.PRIVATE.DATE));
-		assertEquals(UTL.toLocalDate("2023-05-01"), table.getValueAt(1, COL.PRIVATE.DATE));
-		assertEquals(UTL.toLocalDate("2024-06-01"), table.getValueAt(2, COL.PRIVATE.DATE));
-		assertEquals(UTL.toLocalDate("2024-07-01"), table.getValueAt(3, COL.PRIVATE.DATE));
-		assertEquals(UTL.toLocalDate("2025-08-01"), table.getValueAt(4, COL.PRIVATE.DATE));
-		assertEquals(UTL.toLocalDate("2025-09-01"), table.getValueAt(5, COL.PRIVATE.DATE));
-		assertEquals(UTL.toLocalDate("2026-10-01"), table.getValueAt(6, COL.PRIVATE.DATE));
-		assertEquals(UTL.toLocalDate("2026-11-01"), table.getValueAt(7, COL.PRIVATE.DATE));
+		assertEquals(UTL.toLocalDate("2024-01-20"), table.getValueAt(0, COL.FINANCE.DATE));
+		assertEquals(UTL.toLocalDate("2024-02-21"), table.getValueAt(1, COL.FINANCE.DATE));
+		assertEquals(UTL.toLocalDate("2024-03-22"), table.getValueAt(2, COL.FINANCE.DATE));
+		assertEquals(UTL.toLocalDate("2024-04-23"), table.getValueAt(3, COL.FINANCE.DATE));
+		assertEquals(UTL.toLocalDate("2024-05-24"), table.getValueAt(4, COL.FINANCE.DATE));
+		assertEquals(UTL.toLocalDate("2024-06-25"), table.getValueAt(5, COL.FINANCE.DATE));
+		assertEquals(UTL.toLocalDate("2024-07-26"), table.getValueAt(6, COL.FINANCE.DATE));
+		assertEquals(UTL.toLocalDate("2024-08-27"), table.getValueAt(7, COL.FINANCE.DATE));
+		assertEquals(UTL.toLocalDate("2024-09-28"), table.getValueAt(8, COL.FINANCE.DATE));
+		assertEquals(UTL.toLocalDate("2024-10-29"), table.getValueAt(9, COL.FINANCE.DATE));
 	}
 
 	/**
@@ -192,21 +195,23 @@ public class AbTabPrivateTest extends AbFormAbstractMain {
 		AbFormMain frame = showFormMain(DB_FILE_EXIST);
 
 		// タブを切り替え
-		changeTab(frame, 4);
+		changeTab(frame, 5);
 
-		// 秘密収支情報テーブルを取得
-		JTable table = getPrivateTable(frame);
+		// 投資情報テーブルを取得
+		JTable table = getFinanceTable(frame);
 		assertNotNull(table);
 
 		// 名称を確認
-		assertEquals("private01", table.getValueAt(0, COL.PRIVATE.NAME));
-		assertEquals("private02", table.getValueAt(1, COL.PRIVATE.NAME));
-		assertEquals("private03", table.getValueAt(2, COL.PRIVATE.NAME));
-		assertEquals("private04", table.getValueAt(3, COL.PRIVATE.NAME));
-		assertEquals("private05", table.getValueAt(4, COL.PRIVATE.NAME));
-		assertEquals("private06", table.getValueAt(5, COL.PRIVATE.NAME));
-		assertEquals("private07", table.getValueAt(6, COL.PRIVATE.NAME));
-		assertEquals("private08", table.getValueAt(7, COL.PRIVATE.NAME));
+		assertEquals("名称1", table.getValueAt(0, COL.FINANCE.NAME));
+		assertEquals("名称2", table.getValueAt(1, COL.FINANCE.NAME));
+		assertEquals("名称3", table.getValueAt(2, COL.FINANCE.NAME));
+		assertEquals("名称4", table.getValueAt(3, COL.FINANCE.NAME));
+		assertEquals("名称5", table.getValueAt(4, COL.FINANCE.NAME));
+		assertEquals("名称6", table.getValueAt(5, COL.FINANCE.NAME));
+		assertEquals("名称7", table.getValueAt(6, COL.FINANCE.NAME));
+		assertEquals("名称8", table.getValueAt(7, COL.FINANCE.NAME));
+		assertEquals("名称9", table.getValueAt(8, COL.FINANCE.NAME));
+		assertEquals("名称0", table.getValueAt(9, COL.FINANCE.NAME));
 	}
 
 	/**
@@ -221,50 +226,54 @@ public class AbTabPrivateTest extends AbFormAbstractMain {
 		AbFormMain frame = showFormMain(DB_FILE_EXIST);
 
 		// タブを切り替え
-		changeTab(frame, 4);
+		changeTab(frame, 5);
 
-		// 秘密収支情報テーブルを取得
-		JTable table = getPrivateTable(frame);
+		// 投資情報テーブルを取得
+		JTable table = getFinanceTable(frame);
 		assertNotNull(table);
 
 		// 金額を確認
-		assertEquals( 10000, table.getValueAt(0, COL.PRIVATE.COST));
-		assertEquals( 20000, table.getValueAt(1, COL.PRIVATE.COST));
-		assertEquals( 30000, table.getValueAt(2, COL.PRIVATE.COST));
-		assertEquals(-40000, table.getValueAt(3, COL.PRIVATE.COST));
-		assertEquals( 50000, table.getValueAt(4, COL.PRIVATE.COST));
-		assertEquals( 60000, table.getValueAt(5, COL.PRIVATE.COST));
-		assertEquals( 70000, table.getValueAt(6, COL.PRIVATE.COST));
-		assertEquals(-80000, table.getValueAt(7, COL.PRIVATE.COST));
+		assertEquals(10000, table.getValueAt(0, COL.FINANCE.COST));
+		assertEquals(20000, table.getValueAt(1, COL.FINANCE.COST));
+		assertEquals(30000, table.getValueAt(2, COL.FINANCE.COST));
+		assertEquals(40000, table.getValueAt(3, COL.FINANCE.COST));
+		assertEquals(50000, table.getValueAt(4, COL.FINANCE.COST));
+		assertEquals(60000, table.getValueAt(5, COL.FINANCE.COST));
+		assertEquals(70000, table.getValueAt(6, COL.FINANCE.COST));
+		assertEquals(80000, table.getValueAt(7, COL.FINANCE.COST));
+		assertEquals(90000, table.getValueAt(8, COL.FINANCE.COST));
+		assertEquals(11000, table.getValueAt(9, COL.FINANCE.COST));
 	}
 
 	/**
-	 * 収支のテスト
+	 * 累計のテスト
 	 * 
 	 * @throws AbException
 	 */
 	@Test
-	public void privateWithBalance() throws AbException {
+	public void privateWithTotal() throws AbException {
 
 		// 画面を表示
 		AbFormMain frame = showFormMain(DB_FILE_EXIST);
 
 		// タブを切り替え
-		changeTab(frame, 4);
+		changeTab(frame, 5);
 
-		// 秘密収支情報テーブルを取得
-		JTable table = getPrivateTable(frame);
+		// 投資情報テーブルを取得
+		JTable table = getFinanceTable(frame);
 		assertNotNull(table);
 
 		// 収支を確認
-		assertEquals( 10000, table.getValueAt(0, COL.PRIVATE.BALANCE));
-		assertEquals( 30000, table.getValueAt(1, COL.PRIVATE.BALANCE));
-		assertEquals( 60000, table.getValueAt(2, COL.PRIVATE.BALANCE));
-		assertEquals( 20000, table.getValueAt(3, COL.PRIVATE.BALANCE));
-		assertEquals( 70000, table.getValueAt(4, COL.PRIVATE.BALANCE));
-		assertEquals(130000, table.getValueAt(5, COL.PRIVATE.BALANCE));
-		assertEquals(200000, table.getValueAt(6, COL.PRIVATE.BALANCE));
-		assertEquals(120000, table.getValueAt(7, COL.PRIVATE.BALANCE));
+		assertEquals( 10000, table.getValueAt(0, COL.FINANCE.TOTAL));
+		assertEquals( 30000, table.getValueAt(1, COL.FINANCE.TOTAL));
+		assertEquals( 60000, table.getValueAt(2, COL.FINANCE.TOTAL));
+		assertEquals(100000, table.getValueAt(3, COL.FINANCE.TOTAL));
+		assertEquals(150000, table.getValueAt(4, COL.FINANCE.TOTAL));
+		assertEquals(210000, table.getValueAt(5, COL.FINANCE.TOTAL));
+		assertEquals(280000, table.getValueAt(6, COL.FINANCE.TOTAL));
+		assertEquals(360000, table.getValueAt(7, COL.FINANCE.TOTAL));
+		assertEquals(450000, table.getValueAt(8, COL.FINANCE.TOTAL));
+		assertEquals(461000, table.getValueAt(9, COL.FINANCE.TOTAL));
 	}
 
 	/**
@@ -279,21 +288,23 @@ public class AbTabPrivateTest extends AbFormAbstractMain {
 		AbFormMain frame = showFormMain(DB_FILE_EXIST);
 
 		// タブを切り替え
-		changeTab(frame, 4);
+		changeTab(frame, 5);
 
-		// 秘密収支情報テーブルを取得
-		JTable table = getPrivateTable(frame);
+		// 投資情報テーブルを取得
+		JTable table = getFinanceTable(frame);
 		assertNotNull(table);
 
 		// 備考を確認
-		assertEquals("", table.getValueAt(0, COL.PRIVATE.NOTE));
-		assertEquals("", table.getValueAt(1, COL.PRIVATE.NOTE));
-		assertEquals("", table.getValueAt(2, COL.PRIVATE.NOTE));
-		assertEquals("", table.getValueAt(3, COL.PRIVATE.NOTE));
-		assertEquals("", table.getValueAt(4, COL.PRIVATE.NOTE));
-		assertEquals("", table.getValueAt(5, COL.PRIVATE.NOTE));
-		assertEquals("", table.getValueAt(6, COL.PRIVATE.NOTE));
-		assertEquals("note08", table.getValueAt(7, COL.PRIVATE.NOTE));
+		assertEquals("", table.getValueAt(0, COL.FINANCE.NOTE));
+		assertEquals("", table.getValueAt(1, COL.FINANCE.NOTE));
+		assertEquals("", table.getValueAt(2, COL.FINANCE.NOTE));
+		assertEquals("", table.getValueAt(3, COL.FINANCE.NOTE));
+		assertEquals("", table.getValueAt(4, COL.FINANCE.NOTE));
+		assertEquals("", table.getValueAt(5, COL.FINANCE.NOTE));
+		assertEquals("", table.getValueAt(6, COL.FINANCE.NOTE));
+		assertEquals("noteXX", table.getValueAt(7, COL.FINANCE.NOTE));
+		assertEquals("", table.getValueAt(8, COL.FINANCE.NOTE));
+		assertEquals("", table.getValueAt(9, COL.FINANCE.NOTE));
 	}
 
 	/**
@@ -310,18 +321,18 @@ public class AbTabPrivateTest extends AbFormAbstractMain {
 		AbFormMain frame = showFormMain(DB_FILE_EXIST);
 
 		// タブを切り替え
-		changeTab(frame, 4);
+		changeTab(frame, 5);
 
 		// ここで少し待たないとテーブルの内容が正しく取得できない
 		Thread.sleep(500);
 
-		// 秘密収支情報テーブルを取得
-		JTable table = getPrivateTable(frame);
+		// 投資情報テーブルを取得
+		JTable table = getFinanceTable(frame);
 		assertNotNull(table);
 
 		// 背景色の確認(8行目)
 		int row = 7;
-		for (int col = COL.PRIVATE.DATE; col <= COL.PRIVATE.NOTE; col++) {
+		for (int col = COL.FINANCE.DATE; col <= COL.FINANCE.NOTE; col++) {
 			Component component = getTableCellRendererComponent(table, row, col);
 			assertEquals(COLOR.NOTE_BACKGROUND, component.getBackground());
 		}
@@ -341,19 +352,21 @@ public class AbTabPrivateTest extends AbFormAbstractMain {
 		AbFormMain frame = showFormMain(DB_FILE_EXIST);
 
 		// タブを切り替え
-		changeTab(frame, 4);
+		changeTab(frame, 5);
 
 		// ここで少し待たないとテーブルの内容が正しく取得できない
 		Thread.sleep(500);
 
-		// 秘密収支情報テーブルを取得
-		JTable table = getPrivateTable(frame);
+		// 投資情報テーブルを取得
+		JTable table = getFinanceTable(frame);
 		assertNotNull(table);
 
-		// 背景色の確認(1〜7行目)
+		// 背景色の確認(1〜7, 9〜11行目)
 		Color expected = UIManager.getColor("Table.background");
-		for (int row = 0; row < 7; row++) {
-			for (int col = COL.PRIVATE.DATE; col <= COL.PRIVATE.NOTE; col++) {
+		for (int row = 0; row < 10; row++) {
+			if (row == 7)
+				continue;
+			for (int col = COL.FINANCE.DATE; col <= COL.FINANCE.NOTE; col++) {
 				Component component = getTableCellRendererComponent(table, row, col);
 				assertEquals(expected, component.getBackground());
 			}
@@ -374,13 +387,13 @@ public class AbTabPrivateTest extends AbFormAbstractMain {
 		AbFormMain frame = showFormMain(DB_FILE_EXIST);
 
 		// タブを切り替え
-		changeTab(frame, 4);
+		changeTab(frame, 5);
 
 		// ここで少し待たないとテーブルの内容が正しく取得できない
 		Thread.sleep(500);
 
-		// 秘密収支情報テーブルを取得
-		JTable table = getPrivateTable(frame);
+		// 投資情報テーブルを取得
+		JTable table = getFinanceTable(frame);
 		assertNotNull(table);
 
 		// マウスイベント(座標はだいたい8行目の名称列辺り)
@@ -388,7 +401,7 @@ public class AbTabPrivateTest extends AbFormAbstractMain {
 
 		// ツールチップを確認
 		String tooltip = table.getToolTipText(e);
-		assertEquals(String.format(FMT.NOTE, "note08"), tooltip);
+		assertEquals(String.format(FMT.NOTE, "noteXX"), tooltip);
 	}
 
 	/**
@@ -405,13 +418,13 @@ public class AbTabPrivateTest extends AbFormAbstractMain {
 		AbFormMain frame = showFormMain(DB_FILE_EXIST);
 
 		// タブを切り替え
-		changeTab(frame, 4);
+		changeTab(frame, 5);
 
 		// ここで少し待たないとテーブルの内容が正しく取得できない
 		Thread.sleep(500);
 
-		// 秘密収支情報テーブルを取得
-		JTable table = getPrivateTable(frame);
+		// 投資情報テーブルを取得
+		JTable table = getFinanceTable(frame);
 		assertNotNull(table);
 
 		// マウスイベント(座標はだいたい1行目の名称列辺り)
