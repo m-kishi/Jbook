@@ -52,6 +52,7 @@ public class AbBalanceTableModel extends AbstractTableModel {
 			balances.clear();
 		}
 
+		// 年度単位
 		var groupByYear = expenses.stream().filter(exp -> !TYPE.PRIVATES.contains(exp.getType())).collect(
 				Collectors.groupingBy(exp ->
 						exp.getDate().getYear() + (exp.getDate().getMonthValue() < 4 ? -1 : 0),
@@ -69,14 +70,9 @@ public class AbBalanceTableModel extends AbstractTableModel {
 			int earn = 0;
 			int expense = 0;
 			int balance = 0;
-			int finance = 0;
 			for (var groupEntry : groupByType.entrySet()) {
 				String type = groupEntry.getKey();
 				Integer cost = groupEntry.getValue();
-
-				if (TYPE.FNCE.equals(type)) {
-					finance = cost;
-				}
 
 				if (TYPE.BALANCE.EARN.contains(type)) {
 					earn += cost;
@@ -88,7 +84,27 @@ public class AbBalanceTableModel extends AbstractTableModel {
 					balance -= cost;
 				}
 			}
-			balances.add(new Object[] { year, earn, expense, balance, finance });
+			balances.add(new Object[] { year, earn, expense, balance, 0 });
+		}
+
+		// 年単位(投資)
+		groupByYear = expenses.stream().filter(exp -> TYPE.FNCE.equals(exp.getType())).collect(
+				Collectors.groupingBy(exp ->
+						exp.getDate().getYear(),
+						TreeMap::new,
+						Collectors.toList()
+				)
+		);
+
+		for (var yearEntry : groupByYear.entrySet()) {
+			int year = yearEntry.getKey();
+			var finance = yearEntry.getValue().stream().collect(Collectors.summingInt(AbExpense::getCost));
+			var balance = balances.stream().filter(bln -> ((int) bln[COL.BALANCE.YEAR]) == year).findFirst();
+			balance.ifPresentOrElse(bln -> {
+				bln[COL.BALANCE.FINANCE] = finance;
+			}, () -> {
+				balances.add(new Object[] { year, 0, 0, 0, finance });
+			});
 		}
 
 		// 合計

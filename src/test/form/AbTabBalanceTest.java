@@ -36,6 +36,9 @@ public class AbTabBalanceTest extends AbFormAbstractMain {
 	/** DBファイル */
 	private static final String DB_FILE_EMPTY = "AbTabBalanceTestEmpty.db";
 
+	/** DBファイル */
+	private static final String DB_FILE_FNCE_YEAR = "AbTabBalanceTestFnceYear.db";
+
 	@BeforeAll
 	public static void testFixtureSetup() throws AbException, IOException {
 
@@ -88,8 +91,16 @@ public class AbTabBalanceTest extends AbFormAbstractMain {
 			}
 		};
 
+		List<String[]> dbFileFnceYear = new ArrayList<String[]>() {
+			{
+				add(new String[] { "2024-03-01", "name", "収入　", "1000000" });
+				add(new String[] { "2024-03-01", "name", "投資　", " 500000" });
+			}
+		};
+
 		// DBファイルを作成
 		AbTestTool.createDBFileFromParams(DB_FILE_EXIST, dbFileExist);
+		AbTestTool.createDBFileFromParams(DB_FILE_FNCE_YEAR, dbFileFnceYear);
 	}
 
 	@AfterAll
@@ -98,6 +109,7 @@ public class AbTabBalanceTest extends AbFormAbstractMain {
 		// DBファイルが存在するなら削除
 		AbTestTool.deleteDBFile(DB_FILE_EXIST);
 		AbTestTool.deleteDBFile(DB_FILE_EMPTY);
+		AbTestTool.deleteDBFile(DB_FILE_FNCE_YEAR);
 	}
 
 	/**
@@ -291,9 +303,47 @@ public class AbTabBalanceTest extends AbFormAbstractMain {
 		assertNotNull(table);
 
 		// 投資を確認
-		assertEquals( 330000, table.getValueAt(0, COL.BALANCE.FINANCE));
-		assertEquals( 770000, table.getValueAt(1, COL.BALANCE.FINANCE));
-		assertEquals( 550000, table.getValueAt(2, COL.BALANCE.FINANCE));
+		assertEquals( 110000, table.getValueAt(0, COL.BALANCE.FINANCE));
+		assertEquals( 550000, table.getValueAt(1, COL.BALANCE.FINANCE));
+		assertEquals( 990000, table.getValueAt(2, COL.BALANCE.FINANCE));
 		assertEquals(1650000, table.getValueAt(3, COL.BALANCE.FINANCE));
+	}
+
+	/**
+	 * 投資のテスト
+	 * 年度の確認
+	 * 
+	 * @throws AbException
+	 */
+	@Test
+	public void balanceWithFinanceYear() throws AbException {
+
+		// 画面を表示
+		AbFormMain frame = showFormMain(DB_FILE_FNCE_YEAR);
+
+		// タブを切り替え
+		changeTab(frame, 3);
+
+		// 収支情報テーブルを取得
+		JTable table = getBalanceTable(frame);
+		assertNotNull(table);
+
+		// 件数を確認
+		assertEquals(3, table.getRowCount());
+
+		// 年度を確認
+		assertEquals(2023, table.getValueAt(0, COL.BALANCE.YEAR));
+		assertEquals(2024, table.getValueAt(1, COL.BALANCE.YEAR));
+		assertEquals(9999, table.getValueAt(2, COL.BALANCE.YEAR));
+
+		// 収入を確認
+		assertEquals(1000000, table.getValueAt(0, COL.BALANCE.EARN));
+		assertEquals(      0, table.getValueAt(1, COL.BALANCE.EARN));
+		assertEquals(1000000, table.getValueAt(2, COL.BALANCE.EARN));
+
+		// 投資を確認
+		assertEquals(     0, table.getValueAt(0, COL.BALANCE.FINANCE));
+		assertEquals(500000, table.getValueAt(1, COL.BALANCE.FINANCE));
+		assertEquals(500000, table.getValueAt(2, COL.BALANCE.FINANCE));
 	}
 }
