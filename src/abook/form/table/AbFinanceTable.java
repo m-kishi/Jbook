@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 
 import abook.common.AbConstant.COL;
 import abook.common.AbConstant.FMT;
@@ -36,6 +35,7 @@ public class AbFinanceTable extends JTable {
 		// テーブル設定
 		setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, 12));
 		setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		getTableHeader().setReorderingAllowed(false);
 		TableColumn colDate = getColumnModel().getColumn(COL.FINANCE.DATE);
 		TableColumn colName = getColumnModel().getColumn(COL.FINANCE.NAME);
 		TableColumn colCost = getColumnModel().getColumn(COL.FINANCE.COST);
@@ -53,12 +53,16 @@ public class AbFinanceTable extends JTable {
 		colTotal.setCellRenderer(cellBalance);
 
 		// テーブル列幅設定
-		TableColumnModel columns = getColumnModel();
-		columns.getColumn(COL.FINANCE.DATE).setPreferredWidth(92);
-		columns.getColumn(COL.FINANCE.NAME).setPreferredWidth(120);
-		columns.getColumn(COL.FINANCE.COST).setPreferredWidth(80);
-		columns.getColumn(COL.FINANCE.NOTE).setPreferredWidth(64);
-		columns.getColumn(COL.FINANCE.TOTAL).setPreferredWidth(90);
+		colDate.setResizable(false);
+		colName.setResizable(false);
+		colCost.setResizable(false);
+		colNote.setResizable(false);
+		colTotal.setResizable(false);
+		colDate.setPreferredWidth(92);
+		colName.setPreferredWidth(120);
+		colCost.setPreferredWidth(80);
+		colNote.setPreferredWidth(64);
+		colTotal.setPreferredWidth(90);
 	}
 
 	@Override

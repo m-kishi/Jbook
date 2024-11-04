@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 
 import abook.common.AbConstant.COL;
 import abook.common.AbConstant.FMT;
@@ -36,6 +35,7 @@ public class AbPrivateTable extends JTable {
 		// テーブル設定
 		setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, 12));
 		setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		getTableHeader().setReorderingAllowed(false);
 		TableColumn colDate = getColumnModel().getColumn(COL.PRIVATE.DATE);
 		TableColumn colName = getColumnModel().getColumn(COL.PRIVATE.NAME);
 		TableColumn colCost = getColumnModel().getColumn(COL.PRIVATE.COST);
@@ -53,12 +53,16 @@ public class AbPrivateTable extends JTable {
 		colBalance.setCellRenderer(cellBalance);
 
 		// テーブル列幅設定
-		TableColumnModel columns = getColumnModel();
-		columns.getColumn(COL.PRIVATE.DATE).setPreferredWidth(92);
-		columns.getColumn(COL.PRIVATE.NAME).setPreferredWidth(120);
-		columns.getColumn(COL.PRIVATE.COST).setPreferredWidth(80);
-		columns.getColumn(COL.PRIVATE.NOTE).setPreferredWidth(64);
-		columns.getColumn(COL.PRIVATE.BALANCE).setPreferredWidth(90);
+		colDate.setResizable(false);
+		colName.setResizable(false);
+		colCost.setResizable(false);
+		colNote.setResizable(false);
+		colBalance.setResizable(false);
+		colDate.setPreferredWidth(92);
+		colName.setPreferredWidth(120);
+		colCost.setPreferredWidth(80);
+		colNote.setPreferredWidth(64);
+		colBalance.setPreferredWidth(90);
 	}
 
 	@Override

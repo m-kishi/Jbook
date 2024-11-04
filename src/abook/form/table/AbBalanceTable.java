@@ -7,7 +7,6 @@ import java.awt.Font;
 
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 
 import abook.common.AbConstant.COL;
 import abook.form.table.model.AbBalanceTableModel;
@@ -31,6 +30,7 @@ public class AbBalanceTable extends JTable {
 		// テーブル設定
 		setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, 12));
 		setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		getTableHeader().setReorderingAllowed(false);
 		TableColumn colYear = getColumnModel().getColumn(COL.BALANCE.YEAR);
 		TableColumn colEarn = getColumnModel().getColumn(COL.BALANCE.EARN);
 		TableColumn colExpense = getColumnModel().getColumn(COL.BALANCE.EXPENSE);
@@ -48,11 +48,15 @@ public class AbBalanceTable extends JTable {
 		colFinance.setCellRenderer(cellFinance);
 
 		// テーブル列幅設定
-		TableColumnModel columns = getColumnModel();
-		columns.getColumn(COL.BALANCE.YEAR).setPreferredWidth(62);
-		columns.getColumn(COL.BALANCE.EARN).setPreferredWidth(96);
-		columns.getColumn(COL.BALANCE.EXPENSE).setPreferredWidth(96);
-		columns.getColumn(COL.BALANCE.BALANCE).setPreferredWidth(96);
-		columns.getColumn(COL.BALANCE.FINANCE).setPreferredWidth(96);
+		colYear.setResizable(false);
+		colEarn.setResizable(false);
+		colExpense.setResizable(false);
+		colBalance.setResizable(false);
+		colFinance.setResizable(false);
+		colYear.setPreferredWidth(62);
+		colEarn.setPreferredWidth(96);
+		colExpense.setPreferredWidth(96);
+		colBalance.setPreferredWidth(96);
+		colFinance.setPreferredWidth(96);
 	}
 }

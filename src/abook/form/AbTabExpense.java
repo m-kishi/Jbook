@@ -127,6 +127,9 @@ public class AbTabExpense extends JPanel {
 				frame.initialize(expenses);
 
 			} catch (AbException ex) {
+				table.scrollRectToVisible(
+					table.getCellRect(model.getErrorRowIdx() - 1, 0, true)
+				);
 				MSG.error(frame, ex.getMessage());
 			}
 		}

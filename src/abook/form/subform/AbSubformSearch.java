@@ -63,6 +63,7 @@ public class AbSubformSearch extends JDialog {
 		setTitle("支出検索");
 		setModal(true);
 		setSize(478, 346);
+		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 

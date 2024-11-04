@@ -61,6 +61,7 @@ public class AbSubformEnergy extends JDialog implements WindowListener {
 		setTitle("光熱費");
 		setModal(true);
 		setSize(866, 360);
+		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
@@ -93,16 +94,19 @@ public class AbSubformEnergy extends JDialog implements WindowListener {
 		Font font = new Font(Font.DIALOG_INPUT, Font.BOLD, 12);
 		tableEl.setFont(font);
 		tableEl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		tableEl.getTableHeader().setReorderingAllowed(false);
 
 		// 列設定(年度)
 		TableColumn colYear = tableEl.getColumnModel().getColumn(0);
 		colYear.setCellRenderer(new AbGeneralYearCellRenderer());
+		colYear.setResizable(false);
 		colYear.setPreferredWidth(50);
 
 		// 列設定(月)
 		for (int i = 1; i <= 12; i++) {
 			TableColumn colCost = tableEl.getColumnModel().getColumn(i);
 			colCost.setCellRenderer(new AbEnergyCostCellRenderer());
+			colCost.setResizable(false);
 			colCost.setPreferredWidth(65);
 		}
 
@@ -136,16 +140,19 @@ public class AbSubformEnergy extends JDialog implements WindowListener {
 		Font font = new Font(Font.DIALOG_INPUT, Font.BOLD, 12);
 		tableGs.setFont(font);
 		tableGs.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		tableGs.getTableHeader().setReorderingAllowed(false);
 
 		// 列設定(年度)
 		TableColumn colYear = tableGs.getColumnModel().getColumn(0);
 		colYear.setCellRenderer(new AbGeneralYearCellRenderer());
+		colYear.setResizable(false);
 		colYear.setPreferredWidth(50);
 
 		// 列設定(月)
 		for (int i = 1; i <= 12; i++) {
 			TableColumn colCost = tableGs.getColumnModel().getColumn(i);
 			colCost.setCellRenderer(new AbEnergyCostCellRenderer());
+			colCost.setResizable(false);
 			colCost.setPreferredWidth(65);
 		}
 
@@ -179,16 +186,19 @@ public class AbSubformEnergy extends JDialog implements WindowListener {
 		Font font = new Font(Font.DIALOG_INPUT, Font.BOLD, 12);
 		tableWt.setFont(font);
 		tableWt.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		tableWt.getTableHeader().setReorderingAllowed(false);
 
 		// 列設定(年度)
 		TableColumn colYear = tableWt.getColumnModel().getColumn(0);
 		colYear.setCellRenderer(new AbGeneralYearCellRenderer());
+		colYear.setResizable(false);
 		colYear.setPreferredWidth(50);
 
 		// 列設定(月)
 		for (int i = 1; i <= 12; i++) {
 			TableColumn colCost = tableWt.getColumnModel().getColumn(i);
 			colCost.setCellRenderer(new AbEnergyCostCellRenderer());
+			colCost.setResizable(false);
 			colCost.setPreferredWidth(65);
 		}
 

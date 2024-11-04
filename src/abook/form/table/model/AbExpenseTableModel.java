@@ -47,6 +47,9 @@ public class AbExpenseTableModel extends AbstractTableModel implements TableMode
 			"備考",
 	};
 
+	/** エラー行イデックス */
+	private int errorRowIdx = 0;
+
 	/**
 	 * コンストラクタ
 	 * 
@@ -121,6 +124,15 @@ public class AbExpenseTableModel extends AbstractTableModel implements TableMode
 	}
 
 	/**
+	 * getter(エラー行イデックス)
+	 * 
+	 * @return エラー行イデックス
+	 */
+	public int getErrorRowIdx() {
+		return errorRowIdx;
+	}
+
+	/**
 	 * 編集可否
 	 * 
 	 * @return true:編集可能 false:編集不可
@@ -146,7 +158,7 @@ public class AbExpenseTableModel extends AbstractTableModel implements TableMode
 	 * @throws AbException
 	 */
 	public List<AbExpense> getExpenses() throws AbException {
-		int line = 0;
+		errorRowIdx = 0;
 		List<AbExpense> expenses = new ArrayList<AbExpense>();
 		try {
 			for (Object[] expense : this.expenses) {
@@ -158,12 +170,12 @@ public class AbExpenseTableModel extends AbstractTableModel implements TableMode
 
 				List<String> args = new ArrayList<String>(Arrays.asList(date, name, type, cost));
 				if (args.stream().allMatch(arg -> !UTL.isEmpty(arg))) {
-					line++;
+					errorRowIdx++;
 					expenses.add(new AbExpense(date, name, type, cost, note));
 				}
 			}
 		} catch (AbException ex) {
-			String message = String.format(MESSAGE.EXPENSE_ERROR, line, ex.getMessage());
+			String message = String.format(MESSAGE.EXPENSE_ERROR, errorRowIdx, ex.getMessage());
 			AbManager.throwException(message);
 		}
 		return expenses;
@@ -194,8 +206,8 @@ public class AbExpenseTableModel extends AbstractTableModel implements TableMode
 			if (cost != null) {
 				setValueAt(cost, row, COL.EXPENSE.COST);
 			}
-			if (UTL.isEmpty(name) && UTL.isEmpty(type)) {
-				setValueAt("", row, COL.EXPENSE.COST);
+			if (cost == null || (UTL.isEmpty(name) && UTL.isEmpty(type))) {
+					setValueAt("", row, COL.EXPENSE.COST);
 			}
 		}
 	}

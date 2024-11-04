@@ -53,7 +53,10 @@ public class AbBalanceTableModel extends AbstractTableModel {
 		}
 
 		// 年度単位
-		var groupByYear = expenses.stream().filter(exp -> !TYPE.PRIVATES.contains(exp.getType())).collect(
+		var groupByYear = expenses.stream().filter(exp ->
+				!TYPE.PRIVATES.contains(exp.getType()) &&
+				(TYPE.BALANCE.EARN.contains(exp.getType()) || TYPE.BALANCE.EXPENSE.contains(exp.getType()))
+		).collect(
 				Collectors.groupingBy(exp ->
 						exp.getDate().getYear() + (exp.getDate().getMonthValue() < 4 ? -1 : 0),
 						TreeMap::new,

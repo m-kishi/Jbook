@@ -47,6 +47,7 @@ import com.github.alyssaburlton.swingtest.SwingUtilitiesKt;
 import abook.common.AbConstant.COL;
 import abook.common.AbConstant.COLOR;
 import abook.common.AbConstant.FMT;
+import abook.common.AbConstant.TYPE;
 import abook.common.AbException;
 import abook.common.AbManager.MESSAGE;
 import abook.common.AbUtility.UTL;
@@ -588,12 +589,12 @@ public class AbTabExpenseTest extends AbFormAbstractMain {
 
 		/**
 		 * 自動補完の確認
-		 * 保管されない場合のクリア
+		 * 名称入力で保管されない場合のクリア
 		 * 
 		 * @throws AbException
 		 */
 		@Test
-		public void completeWithClear() throws AbException {
+		public void completeWithNotMatchNameClear() throws AbException {
 
 			// 画面を表示
 			AbFormMain frame = showFormMain(DB_FILE_COMPLETE);
@@ -602,12 +603,36 @@ public class AbTabExpenseTest extends AbFormAbstractMain {
 			JTable table = getExpenseTable(frame);
 			assertNotNull(table);
 
-			// 支出情報を入力
+			// 名称を入力
 			TableModel model = table.getModel();
 			model.setValueAt("not match", 0, COL.EXPENSE.NAME);
 
 			// 種別がクリアされる
 			assertEquals("", model.getValueAt(0, COL.EXPENSE.TYPE));
+
+			// 金額がクリアされる
+			assertEquals("", model.getValueAt(0, COL.EXPENSE.COST));
+		}
+
+		/**
+		 * 自動補完の確認
+		 * 種別選択で保管されない場合のクリア
+		 * 
+		 * @throws AbException
+		 */
+		@Test
+		public void completeWithNotMatchTypeClear() throws AbException {
+
+			// 画面を表示
+			AbFormMain frame = showFormMain(DB_FILE_COMPLETE);
+
+			// 支出情報テーブルを取得
+			JTable table = getExpenseTable(frame);
+			assertNotNull(table);
+
+			// 種別を選択
+			TableModel model = table.getModel();
+			model.setValueAt(TYPE.OTFD, 0, COL.EXPENSE.TYPE);
 
 			// 金額がクリアされる
 			assertEquals("", model.getValueAt(0, COL.EXPENSE.COST));

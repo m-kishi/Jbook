@@ -37,6 +37,7 @@ public class AbSubformType extends JDialog {
 		setTitle(type);
 		setModal(true);
 		setSize(478, 280);
+		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 

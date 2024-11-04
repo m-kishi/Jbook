@@ -17,7 +17,6 @@ import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 
 import abook.common.AbConstant.COL;
 import abook.common.AbConstant.FMT;
@@ -58,6 +57,7 @@ public class AbExpenseTable extends JTable {
 		// テーブル設定
 		setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, 12));
 		setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		getTableHeader().setReorderingAllowed(false);
 		TableColumn colDate = getColumnModel().getColumn(COL.EXPENSE.DATE);
 		TableColumn colName = getColumnModel().getColumn(COL.EXPENSE.NAME);
 		TableColumn colType = getColumnModel().getColumn(COL.EXPENSE.TYPE);
@@ -80,19 +80,23 @@ public class AbExpenseTable extends JTable {
 		colNote.setCellEditor(new AbExpenseNoteCellEditor());
 
 		// テーブル列幅設定
-		TableColumnModel columns = getColumnModel();
-		columns.getColumn(COL.EXPENSE.DATE).setPreferredWidth(100);
-		columns.getColumn(COL.EXPENSE.NAME).setPreferredWidth(134);
-		columns.getColumn(COL.EXPENSE.TYPE).setPreferredWidth(68);
-		columns.getColumn(COL.EXPENSE.COST).setPreferredWidth(80);
-		columns.getColumn(COL.EXPENSE.NOTE).setPreferredWidth(64);
-
-		// セル選択の設定
-		setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		setRowSelectionAllowed(true);
-		setCellSelectionEnabled(true);
+		colDate.setResizable(false);
+		colName.setResizable(false);
+		colType.setResizable(false);
+		colCost.setResizable(false);
+		colNote.setResizable(false);
+		colDate.setPreferredWidth(100);
+		colName.setPreferredWidth(134);
+		colType.setPreferredWidth(68);
+		colCost.setPreferredWidth(80);
+		colNote.setPreferredWidth(64);
 
 		if (model.isEditable()) {
+			// セル選択の設定
+			setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+			setRowSelectionAllowed(true);
+			setCellSelectionEnabled(true);
+
 			// キー入力したらフォーカスをセルに設定する
 			setSurrendersFocusOnKeystroke(true);
 

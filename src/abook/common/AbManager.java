@@ -29,13 +29,6 @@ public class AbManager {
 	 */
 	public static class MESSAGE {
 
-		/** 設定ファイル読込エラー：%s */
-		public static final String PROPERTIES_LOAD = "設定ファイル読込エラー：%s";
-		/** 設定ファイル保存エラー：%s */
-		public static final String PROPERTIES_STORE = "設定ファイル保存エラー：%s";
-
-		/** 設定しました．アプリを再起動してください． */
-		public static final String SETTING_COMPLETE = "<html>設定しました．<br>アプリを再起動してください．";
 		/** 正常に登録しました． */
 		public static final String ENTRY_COMPLETE = "正常に登録しました．";
 
