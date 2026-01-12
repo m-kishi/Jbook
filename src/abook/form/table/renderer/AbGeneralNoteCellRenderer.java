@@ -5,14 +5,13 @@ package abook.form.table.renderer;
 
 import java.awt.Component;
 
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
- * 年度セル
+ * 備考セル
  */
-public class AbGeneralYearCellRenderer extends DefaultTableCellRenderer {
+public class AbGeneralNoteCellRenderer extends DefaultTableCellRenderer {
 
 	@Override
 	public Component getTableCellRendererComponent(
@@ -23,15 +22,13 @@ public class AbGeneralYearCellRenderer extends DefaultTableCellRenderer {
 			int row,
 			int column
 	) {
-		setHorizontalAlignment(JLabel.CENTER);
 		Component renderer = super.getTableCellRendererComponent(
 				table,
 				value,
 				isSelected,
 				hasFocus,
 				row,
-				column
-		);
+				column);
 		return renderer;
 	}
 }

@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import abook.common.AbUtility.UTL;
 
 /**
- * 金額列
+ * 金額セル
  */
 public class AbGeneralCostCellRenderer extends DefaultTableCellRenderer {
 
@@ -26,7 +26,6 @@ public class AbGeneralCostCellRenderer extends DefaultTableCellRenderer {
 			int column
 	) {
 		setHorizontalAlignment(JLabel.RIGHT);
-
 		Component renderer = super.getTableCellRendererComponent(
 				table,
 				UTL.toCurrency(value, getLocale()),
@@ -35,7 +34,6 @@ public class AbGeneralCostCellRenderer extends DefaultTableCellRenderer {
 				row,
 				column
 		);
-
 		return renderer;
 	}
 }

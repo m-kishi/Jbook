@@ -157,6 +157,15 @@ public abstract class AbFormAbstractMain extends AbFormAbstract {
 	}
 
 	/**
+	 * 月次ボタンをクリック
+	 * 
+	 * @param frame 親のフレーム
+	 */
+	protected void clickMonthlyButton(AbFormMain frame) {
+		ChildInteractionsKt.clickChild(frame, JButton.class, null, "月次");
+	}
+
+	/**
 	 * 登録ボタンをクリック
 	 * 
 	 * @param frame 親のフレーム

@@ -3,6 +3,7 @@
 // ------------------------------------------------------------
 package test.form;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
@@ -53,6 +54,7 @@ import abook.common.AbManager.MESSAGE;
 import abook.common.AbUtility.UTL;
 import abook.expense.AbExpense;
 import abook.form.AbFormMain;
+import abook.form.table.model.AbExpenseTableModel;
 import junitx.framework.FileAssert;
 import test.tool.AbFormAbstractMain;
 import test.tool.AbTestCleanupExtension;
@@ -96,6 +98,15 @@ public class AbTabExpenseTest extends AbFormAbstractMain {
 
 	/** DBファイル */
 	private static final String DB_FILE_ENTRY_EXPECTED2 = "AbTabExpenseTestEntryExpected2.db";
+
+	/** DBファイル */
+	private static final String DB_FILE_MONTHLY_CURR = "AbTabExpenseTestMonthlyCurr.db";
+
+	/** DBファイル */
+	private static final String DB_FILE_MONTHLY_PREV = "AbTabExpenseTestMonthlyPrev.db";
+
+	/** DBファイル */
+	private static final String DB_FILE_MONTHLY_NOTHING = "AbTabExpenseTestMonthlyNothing.db";
 
 	/** 支出情報リスト */
 	private static List<AbExpense> dbFileExist;
@@ -181,6 +192,71 @@ public class AbTabExpenseTest extends AbFormAbstractMain {
 				)
 		);
 
+		LocalDate now = LocalDate.now();
+		LocalDate prev = now.minusMonths(1);
+		LocalDate dtCurrLast = now.withDayOfMonth(now.lengthOfMonth());
+		LocalDate dtPrevLast = prev.withDayOfMonth(prev.lengthOfMonth());
+		LocalDate dtNotCurrLast = dtCurrLast.minusDays(1);
+		LocalDate dtNotPrevLast = dtPrevLast.minusDays(1);
+		List<AbExpense> dbFileMonthlyCurr = new ArrayList<AbExpense>(
+				Arrays.asList(
+						new AbExpense(UTL.toString(dtPrevLast), "name01", TYPE.HOUS, "10000", "家賃　備考"),
+						new AbExpense(UTL.toString(dtPrevLast), "name02", TYPE.ENGY, "20000", "光熱費備考"),
+						new AbExpense(UTL.toString(dtPrevLast), "name03", TYPE.CNCT, "30000", "通信費備考"),
+						new AbExpense(UTL.toString(dtPrevLast), "name04", TYPE.MEDI, "40000", "医療費備考"),
+						new AbExpense(UTL.toString(dtPrevLast), "name05", TYPE.INSU, "50000", "保険料備考"),
+						new AbExpense(UTL.toString(dtPrevLast), "name06", TYPE.OTHR, "60000", "その他備考"),
+						new AbExpense(UTL.toString(dtPrevLast), "name07", TYPE.EARN, "70000", "収入　備考"),
+						new AbExpense(UTL.toString(dtPrevLast), "name08", TYPE.FNCE, "80000", "投資　備考"),
+						new AbExpense(UTL.toString(dtCurrLast), "name00", TYPE.FOOD, "99999", ""),
+						new AbExpense(UTL.toString(dtCurrLast), "name01", TYPE.HOUS, "11000", "家賃　備考"),
+						new AbExpense(UTL.toString(dtCurrLast), "name02", TYPE.ENGY, "21000", "光熱費備考"),
+						new AbExpense(UTL.toString(dtCurrLast), "name03", TYPE.CNCT, "31000", "通信費備考"),
+						new AbExpense(UTL.toString(dtCurrLast), "name04", TYPE.MEDI, "41000", "医療費備考"),
+						new AbExpense(UTL.toString(dtCurrLast), "name05", TYPE.INSU, "51000", "保険料備考"),
+						new AbExpense(UTL.toString(dtCurrLast), "name06", TYPE.OTHR, "61000", "その他備考"),
+						new AbExpense(UTL.toString(dtCurrLast), "name07", TYPE.EARN, "71000", "収入　備考"),
+						new AbExpense(UTL.toString(dtCurrLast), "name08", TYPE.FNCE, "81000", "投資　備考"),
+						new AbExpense(UTL.toString(dtCurrLast), "name11", TYPE.FOOD, "99999", "")
+				)
+		);
+
+		List<AbExpense> dbFileMonthlyPrev = new ArrayList<AbExpense>(
+				Arrays.asList(
+						new AbExpense(UTL.toString(dtPrevLast), "name00", TYPE.FOOD, "99999", ""),
+						new AbExpense(UTL.toString(dtPrevLast), "name01", TYPE.HOUS, "11000", "家賃　備考"),
+						new AbExpense(UTL.toString(dtPrevLast), "name02", TYPE.ENGY, "21000", "光熱費備考"),
+						new AbExpense(UTL.toString(dtPrevLast), "name03", TYPE.CNCT, "31000", "通信費備考"),
+						new AbExpense(UTL.toString(dtPrevLast), "name04", TYPE.MEDI, "41000", "医療費備考"),
+						new AbExpense(UTL.toString(dtPrevLast), "name05", TYPE.INSU, "51000", "保険料備考"),
+						new AbExpense(UTL.toString(dtPrevLast), "name06", TYPE.OTHR, "61000", "その他備考"),
+						new AbExpense(UTL.toString(dtPrevLast), "name07", TYPE.EARN, "71000", "収入　備考"),
+						new AbExpense(UTL.toString(dtPrevLast), "name08", TYPE.FNCE, "81000", "投資　備考"),
+						new AbExpense(UTL.toString(dtCurrLast), "name11", TYPE.FOOD, "99999", "")
+				)
+		);
+
+		List<AbExpense> dbFileMonthlyNothing = new ArrayList<AbExpense>(
+				Arrays.asList(
+						new AbExpense(UTL.toString(dtNotPrevLast), "name01", TYPE.HOUS, "10000", "家賃　備考"),
+						new AbExpense(UTL.toString(dtNotPrevLast), "name02", TYPE.ENGY, "20000", "光熱費備考"),
+						new AbExpense(UTL.toString(dtNotPrevLast), "name03", TYPE.CNCT, "30000", "通信費備考"),
+						new AbExpense(UTL.toString(dtNotPrevLast), "name04", TYPE.MEDI, "40000", "医療費備考"),
+						new AbExpense(UTL.toString(dtNotPrevLast), "name05", TYPE.INSU, "50000", "保険料備考"),
+						new AbExpense(UTL.toString(dtNotPrevLast), "name06", TYPE.OTHR, "60000", "その他備考"),
+						new AbExpense(UTL.toString(dtNotPrevLast), "name07", TYPE.EARN, "70000", "収入　備考"),
+						new AbExpense(UTL.toString(dtNotPrevLast), "name08", TYPE.FNCE, "80000", "投資　備考"),
+						new AbExpense(UTL.toString(dtNotCurrLast), "name01", TYPE.HOUS, "11000", "家賃　備考"),
+						new AbExpense(UTL.toString(dtNotCurrLast), "name02", TYPE.ENGY, "21000", "光熱費備考"),
+						new AbExpense(UTL.toString(dtNotCurrLast), "name03", TYPE.CNCT, "31000", "通信費備考"),
+						new AbExpense(UTL.toString(dtNotCurrLast), "name04", TYPE.MEDI, "41000", "医療費備考"),
+						new AbExpense(UTL.toString(dtNotCurrLast), "name05", TYPE.INSU, "51000", "保険料備考"),
+						new AbExpense(UTL.toString(dtNotCurrLast), "name06", TYPE.OTHR, "61000", "その他備考"),
+						new AbExpense(UTL.toString(dtNotCurrLast), "name07", TYPE.EARN, "71000", "収入　備考"),
+						new AbExpense(UTL.toString(dtNotCurrLast), "name08", TYPE.FNCE, "81000", "投資　備考")
+				)
+		);
+
 		// DBファイルを作成
 		AbTestTool.createDBFile(DB_FILE_EXIST, dbFileExist);
 		AbTestTool.createDBFile(DB_FILE_ENTRY, dbFileEntry);
@@ -190,6 +266,9 @@ public class AbTabExpenseTest extends AbFormAbstractMain {
 		AbTestTool.createDBFile(DB_FILE_TAX_ACTION, dbFileTaxAction);
 		AbTestTool.createDBFile(DB_FILE_ENTRY_EXPECTED, dbFileEntryExpected);
 		AbTestTool.createDBFile(DB_FILE_ENTRY_EXPECTED2, dbFileEntryExpected2);
+		AbTestTool.createDBFile(DB_FILE_MONTHLY_CURR, dbFileMonthlyCurr);
+		AbTestTool.createDBFile(DB_FILE_MONTHLY_PREV, dbFileMonthlyPrev);
+		AbTestTool.createDBFile(DB_FILE_MONTHLY_NOTHING, dbFileMonthlyNothing);
 	}
 
 	@AfterAll
@@ -207,6 +286,9 @@ public class AbTabExpenseTest extends AbFormAbstractMain {
 		AbTestTool.deleteDBFile(DB_FILE_ENTRY_IGNORED);
 		AbTestTool.deleteDBFile(DB_FILE_ENTRY_EXPECTED);
 		AbTestTool.deleteDBFile(DB_FILE_ENTRY_EXPECTED2);
+		AbTestTool.deleteDBFile(DB_FILE_MONTHLY_CURR);
+		AbTestTool.deleteDBFile(DB_FILE_MONTHLY_PREV);
+		AbTestTool.deleteDBFile(DB_FILE_MONTHLY_NOTHING);
 	}
 
 	/**
@@ -547,7 +629,112 @@ public class AbTabExpenseTest extends AbFormAbstractMain {
 				assertEquals(expected, UTL.toString((LocalDate) table.getModel().getValueAt(i, COL.EXPENSE.DATE)));
 			}
 		}
+	}
 
+	/**
+	 * 月次ボタン
+	 */
+	@Nested
+	class MonthlyButton {
+
+		/**
+		 * 月次ボタン
+		 * 当月:なし
+		 * 前月:なし
+		 * 
+		 * @throws AbException
+		 */
+		@Test
+		public void monthlyButtonWithBothNothing() throws AbException {
+
+			// 画面を表示
+			AbFormMain frame = showFormMain(DB_FILE_MONTHLY_NOTHING);
+
+			// 支出情報テーブルを取得
+			JTable table = getExpenseTable(frame);
+			assertNotNull(table);
+			var tableExpenseList = ((AbExpenseTableModel) table.getModel()).getExpenses().toArray();
+
+			// 月次ボタンをクリック
+			clickMonthlyButton(frame);
+
+			// 何も起きていないことを確認
+			JTable afterClickedTable = getExpenseTable(frame);
+			assertEquals(table.getSize(), afterClickedTable.getSize());
+			assertArrayEquals(
+					tableExpenseList,
+					((AbExpenseTableModel) afterClickedTable.getModel()).getExpenses().toArray()
+			);
+		}
+
+		/**
+		 * 月次ボタン
+		 * 当月:あり
+		 * 
+		 * @throws AbException
+		 */
+		@Test
+		public void monthlyButtonWithCurrHit() throws AbException {
+
+			// 画面を表示
+			AbFormMain frame = showFormMain(DB_FILE_MONTHLY_CURR);
+
+			// 支出情報テーブルを取得
+			JTable table = getExpenseTable(frame);
+			assertNotNull(table);
+			var tableExpenseList = ((AbExpenseTableModel) table.getModel()).getExpenses().subList(9, 17).toArray();
+
+			// 月次ボタンをクリック
+			clickMonthlyButton(frame);
+
+			// 今月の月次情報が最後尾に移動したことを確認
+			JTable afterClickedTable = getExpenseTable(frame);
+			var afterExpenseList = ((AbExpenseTableModel) afterClickedTable.getModel()).getExpenses().subList(10, 18).toArray();
+			assertEquals(tableExpenseList.length, afterExpenseList.length);
+			for (int i = 0; i < tableExpenseList.length - 1; i++) {
+				assertEquals(tableExpenseList[i], afterExpenseList[i]);
+			}
+		}
+
+		/**
+		 * 月次ボタン
+		 * 当月:なし
+		 * 前月:あり
+		 * 
+		 * @throws AbException
+		 */
+		@Test
+		public void monthlyButtonWithPrevHit() throws AbException {
+
+			// 月末
+			LocalDate now = LocalDate.now();
+			LocalDate dtCurrLast = now.withDayOfMonth(now.lengthOfMonth());
+
+			// 画面を表示
+			AbFormMain frame = showFormMain(DB_FILE_MONTHLY_PREV);
+
+			// 支出情報テーブルを取得
+			JTable table = getExpenseTable(frame);
+			assertNotNull(table);
+			var tableExpenseList = ((AbExpenseTableModel) table.getModel()).getExpenses().subList(1, 9).toArray();
+
+			// 月次ボタンをクリック
+			clickMonthlyButton(frame);
+
+			// 前月の月次情報がコピーされることを確認
+			JTable afterClickedTable = getExpenseTable(frame);
+			var afterExpenseList = ((AbExpenseTableModel) afterClickedTable.getModel()).getExpenses().subList(10, 18).toArray();
+			assertEquals(tableExpenseList.length, afterExpenseList.length);
+			for (int i = 0; i < tableExpenseList.length - 1; i++) {
+				var expected = (AbExpense) tableExpenseList[i];
+				var actual = (AbExpense) afterExpenseList[i];
+				assertEquals(dtCurrLast, actual.getDate());
+				assertEquals(expected.getName(), actual.getName());
+				assertEquals(expected.getType(), actual.getType());
+				assertEquals(expected.getCost(), actual.getCost());
+				assertEquals(expected.getNote(), actual.getNote());
+			}
+		}
 	}
 
 	/**
@@ -1681,9 +1868,15 @@ public class AbTabExpenseTest extends AbFormAbstractMain {
 
 				// 日付は画面上から空欄にできないため，それ以外の列で確認
 				switch (i) {
-					case 3: name = ""; break;
-					case 4: type = ""; break;
-					case 5: cost = null; break;
+					case 3:
+						name = "";
+						break;
+					case 4:
+						type = "";
+						break;
+					case 5:
+						cost = null;
+						break;
 					default:
 						break;
 				}

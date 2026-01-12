@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import abook.form.table.model.AbEnergyTableModel;
 
 /**
- * 光熱費の金額列
+ * 光熱費の金額セル
  */
 public class AbEnergyCostCellRenderer extends DefaultTableCellRenderer {
 

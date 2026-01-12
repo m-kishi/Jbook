@@ -6,9 +6,9 @@ package test.table.renderer;
 import org.junit.jupiter.api.Disabled;
 
 /**
- * テスト:年度セル
+ * テスト:備考セル
  */
 @Disabled
-public class AbGeneralYearCellRendererTest {
+public class AbGeneralNoteCellRendererTest {
 
 }

@@ -8,12 +8,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
 import abook.common.AbConstant.COL;
+import abook.common.AbConstant.TYPE;
 import abook.common.AbException;
 import abook.common.AbManager;
 import abook.common.AbManager.MESSAGE;
@@ -45,6 +48,13 @@ public class AbExpenseTableModel extends AbstractTableModel implements TableMode
 			"種別",
 			"金額",
 			"備考",
+	};
+
+	/**
+	 * 月次対象種別
+	 */
+	private static final String[] MONTHLY_TYPES = {
+			TYPE.HOUS, TYPE.ENGY, TYPE.CNCT, TYPE.MEDI, TYPE.INSU, TYPE.OTHR, TYPE.EARN, TYPE.FNCE
 	};
 
 	/** エラー行イデックス */
@@ -152,6 +162,36 @@ public class AbExpenseTableModel extends AbstractTableModel implements TableMode
 	}
 
 	/**
+	 * 月次処理
+	 */
+	public void monthly() {
+		LocalDate now = LocalDate.now();
+		LocalDate prev = now.minusMonths(1);
+		LocalDate dtCurrLast = now.withDayOfMonth(now.lengthOfMonth());
+		LocalDate dtPrevLast = prev.withDayOfMonth(prev.lengthOfMonth());
+		Function<LocalDate, List<Object[]>> getLastExpenses = dt -> {
+			return expenses.stream().filter(exp -> {
+				return dt.equals(exp[0]) && Arrays.asList(MONTHLY_TYPES).contains(exp[2]);
+			}).collect(Collectors.toList());
+		};
+		var currLastExpenses = getLastExpenses.apply(dtCurrLast);
+		if (currLastExpenses.size() == 0) {
+			var prevLastExpenses = getLastExpenses.apply(dtPrevLast);
+			if (prevLastExpenses.size() == 0) {
+				return;
+			}
+			expenses.addAll(prevLastExpenses.stream().map(exp -> {
+				exp[0] = dtCurrLast;
+				return exp;
+			}).toList());
+		} else {
+			expenses.removeIf(exp -> currLastExpenses.contains(exp));
+			expenses.addAll(currLastExpenses);
+		}
+		fireTableDataChanged();
+	}
+
+	/**
 	 * 支出情報リストを取得
 	 * 
 	 * @return 支出情報リスト
@@ -207,7 +247,7 @@ public class AbExpenseTableModel extends AbstractTableModel implements TableMode
 				setValueAt(cost, row, COL.EXPENSE.COST);
 			}
 			if (cost == null || (UTL.isEmpty(name) && UTL.isEmpty(type))) {
-					setValueAt("", row, COL.EXPENSE.COST);
+				setValueAt("", row, COL.EXPENSE.COST);
 			}
 		}
 	}

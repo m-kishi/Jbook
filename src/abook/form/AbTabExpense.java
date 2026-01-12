@@ -51,23 +51,31 @@ public class AbTabExpense extends JPanel {
 		super();
 		this.frame = frame;
 
-		// ボタンエリアの右寄せ
-		FlowLayout layout = new FlowLayout();
-		layout.setAlignment(FlowLayout.RIGHT);
+		// ボタンエリア左寄せ領域
+		JPanel btnLArea = new JPanel(new FlowLayout(FlowLayout.LEFT, 2, 5));
+
+		// ボタンエリア右寄せ領域
+		JPanel btnRArea = new JPanel(new FlowLayout(FlowLayout.RIGHT, 2, 5));
 
 		// ボタンエリア
-		JPanel buttonArea = new JPanel();
-		buttonArea.setLayout(layout);
+		JPanel buttonArea = new JPanel(new BorderLayout());
+		buttonArea.add(btnLArea, BorderLayout.WEST);
+		buttonArea.add(btnRArea, BorderLayout.EAST);
 
 		// 登録ボタン
 		JButton btnEntry = new JButton("登録");
 		btnEntry.addActionListener(new EntryActionListener());
-		buttonArea.add(btnEntry);
+		btnRArea.add(btnEntry);
 
 		// 行追加ボタン
 		JButton btnAddRow = new JButton("+");
 		btnAddRow.addActionListener(new AddRowActionListener());
-		buttonArea.add(btnAddRow);
+		btnRArea.add(btnAddRow);
+
+		// 月次ボタン
+		JButton btnMonthly = new JButton("月次");
+		btnMonthly.addActionListener(new MonthlyActionListener());
+		btnLArea.add(btnMonthly);
 
 		// テーブル設定
 		model = new AbExpenseTableModel(expenses, true);
@@ -102,6 +110,18 @@ public class AbTabExpense extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			model.addRow();
+		}
+	}
+
+	/**
+	 * 月次ボタン
+	 */
+	private class MonthlyActionListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			model.monthly();
+			initialize();
 		}
 	}
 

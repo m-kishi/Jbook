@@ -5,6 +5,7 @@ package abook.form.table.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import javax.swing.table.AbstractTableModel;
@@ -22,11 +23,10 @@ public class AbFinanceTableModel extends AbstractTableModel {
 
 	/** 列ヘッダ定義 */
 	private static final String[] COLUMNS = {
-			"日付",
+			"年",
 			"名称",
-			"金額",
-			"累計",
 			"備考",
+			"金額",
 	};
 
 	/**
@@ -50,19 +50,30 @@ public class AbFinanceTableModel extends AbstractTableModel {
 			this.finances.clear();
 		}
 
-		int total = 0;
-		var finances = expenses.stream().filter(exp -> TYPE.FNCE.equals(exp.getType())).collect(Collectors.toList());
-		for (AbExpense expense : finances) {
-			int cost = expense.getCost();
-			total += cost;
-			this.finances.add(
-					new Object[] {
-							expense.getDate(),
-							expense.getName(),
-							cost,
-							total,
-							expense.getNote()
+		// 年＋名称＋備考
+		var grouped = expenses.stream().filter(exp -> TYPE.FNCE.equals(exp.getType())).collect(
+			Collectors.groupingBy(exp ->
+				exp.getDate().getYear(), TreeMap::new,
+				Collectors.groupingBy(
+						AbExpense::getName, TreeMap::new,
+						Collectors.groupingBy(
+								AbExpense::getNote, TreeMap::new,
+								Collectors.summingInt(AbExpense::getCost)
+						)
+				)
+			)
+		);
+		for (var yearEntry : grouped.entrySet()) {
+			for (var nameEntry : yearEntry.getValue().entrySet()) {
+				for (var noteEntry : nameEntry.getValue().entrySet()) {
+					this.finances.add(new Object[] {
+							yearEntry.getKey(),
+							nameEntry.getKey(),
+							noteEntry.getKey(),
+							noteEntry.getValue(),
 					});
+				}
+			}
 		}
 		fireTableDataChanged();
 	}

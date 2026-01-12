@@ -6,6 +6,7 @@ package abook.expense;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Objects;
 
 import abook.common.AbConstant.FMT;
 import abook.common.AbConstant.TYPE;
@@ -201,5 +202,32 @@ public class AbExpense {
 	 */
 	public String getNote() {
 		return note;
+	}
+
+	/**
+	 * UnitTestで利用
+	 */
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof AbExpense)) {
+			return false;
+		}
+		AbExpense other = (AbExpense) o;
+		return Objects.equals(date, other.getDate())
+				&& Objects.equals(name, other.getName())
+				&& Objects.equals(type, other.getType())
+				&& Objects.equals(cost, other.getCost())
+				&& Objects.equals(note, other.getNote());
+	}
+
+	/**
+	 * UnitTestで利用
+	 */
+	@Override
+	public int hashCode() {
+		return Objects.hash(date, name, type, cost, note);
 	}
 }

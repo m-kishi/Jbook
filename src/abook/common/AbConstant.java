@@ -87,16 +87,14 @@ public class AbConstant {
 
 		/** 投資情報 */
 		public static class FINANCE {
-			/** 日付 */
-			public static final int DATE = 0;
+			/** 年 */
+			public static final int YEAR = 0;
 			/** 名称 */
 			public static final int NAME = 1;
-			/** 金額 */
-			public static final int COST = 2;
 			/** 備考 */
-			public static final int NOTE = 4;
-			/** 累計 */
-			public static final int TOTAL = 3;
+			public static final int NOTE = 2;
+			/** 金額 */
+			public static final int COST = 3;
 		}
 	}
 

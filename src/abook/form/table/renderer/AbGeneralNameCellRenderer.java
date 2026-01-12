@@ -5,14 +5,13 @@ package abook.form.table.renderer;
 
 import java.awt.Component;
 
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
- * 年度セル
+ * 名称セル
  */
-public class AbGeneralYearCellRenderer extends DefaultTableCellRenderer {
+public class AbGeneralNameCellRenderer extends DefaultTableCellRenderer {
 
 	@Override
 	public Component getTableCellRendererComponent(
@@ -23,7 +22,6 @@ public class AbGeneralYearCellRenderer extends DefaultTableCellRenderer {
 			int row,
 			int column
 	) {
-		setHorizontalAlignment(JLabel.CENTER);
 		Component renderer = super.getTableCellRendererComponent(
 				table,
 				value,
