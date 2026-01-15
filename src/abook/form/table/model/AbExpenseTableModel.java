@@ -181,8 +181,9 @@ public class AbExpenseTableModel extends AbstractTableModel implements TableMode
 				return;
 			}
 			expenses.addAll(prevLastExpenses.stream().map(exp -> {
-				exp[0] = dtCurrLast;
-				return exp;
+				Object[] copy = exp.clone();
+				copy[0] = dtCurrLast;
+				return copy;
 			}).toList());
 		} else {
 			expenses.removeIf(exp -> currLastExpenses.contains(exp));

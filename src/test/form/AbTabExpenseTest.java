@@ -734,6 +734,14 @@ public class AbTabExpenseTest extends AbFormAbstractMain {
 				assertEquals(expected.getCost(), actual.getCost());
 				assertEquals(expected.getNote(), actual.getNote());
 			}
+
+			// 前月の支出情報には影響がないことを確認
+			afterExpenseList = ((AbExpenseTableModel) afterClickedTable.getModel()).getExpenses().subList(1, 9).toArray();
+			assertEquals(tableExpenseList.length, afterExpenseList.length);
+			assertArrayEquals(
+					tableExpenseList,
+					afterExpenseList
+			);
 		}
 	}
 
